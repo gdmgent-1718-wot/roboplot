@@ -1,0 +1,85 @@
+import pygame, sys
+from time import sleep
+import RPi.GPIO as GPIO
+
+pygame.init()
+joystick_count = pygame.joystick.get_count()
+GPIO.setmode(GPIO.BCM)
+LED = 21
+GPIO.setup(LED, GPIO.OUT)
+p = GPIO.PWM(21,50)
+p.start(0)
+
+if joystick_count == 0:
+    # sluiten als er geen connectie is
+    print ("Er zijn geen joysticks gevonden")
+    pygame.quit()
+    sys.exit()
+else:
+    # init joystick
+    joystick = pygame.joystick.Joystick(0)
+    joystick.init()
+    
+axes = joystick.get_numaxes()
+buttons = joystick.get_numbuttons()
+hats = joystick.get_numhats()
+
+def getAxis(number):
+    # when nothing is moved on an axis, the VALUE IS NOT EXACTLY ZERO
+    # so this is used not "if joystick value not zero"
+    v = joystick.get_axis(number)*100;
+    if joystick.get_axis(number) < -0.1 or joystick.get_axis(number) > 0.1:
+      # led oplichten bij kruisje
+      print "Waarde %s" %(joystick.get_axis(number))
+      if joystick.get_axis(number) > 0:
+          #led oplichten
+          p.ChangeDutyCycle(v)
+          sleep(0.02)  
+      if joystick.get_axis(number) < 0:
+          #led dimmen
+          p.ChangeDutyCycle(100+v)
+          sleep(0.02)  
+def getButton(number):
+    # returns 1 or 0 - pressed or not
+    if joystick.get_button(number):
+        if number == 13:
+            GPIO.output(LED,False)
+            print "uit" 
+        if number == 14:
+            GPIO.output(LED,True)
+            GPIO.PWM(LED, 1)
+            print "aan"
+
+while True:
+    for event in pygame.event.get():
+      # loop through events, if window shut down, quit program
+      if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
+    if axes != 0:
+      for i in range(axes):
+        getAxis(i)
+    if buttons != 0:
+      for i in range(buttons):
+        getButton(i)
+    if hats != 0:
+      for i in range(hats):
+        getHat(i)
+    sleep(0.1)
+      
+while True:
+    for event in pygame.event.get():
+      # loop through events, if window shut down, quit program
+      if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
+    if axes != 0:
+      for i in range(axes):
+        getAxis(i)
+    if buttons != 0:
+      for i in range(buttons):
+        getButton(i)
+    if hats != 0:
+      for i in range(hats):
+        getHat(i)
+    sleep(0.2)
