@@ -88,33 +88,34 @@ def resetMotor():
     pwmB.stop() #stop PWM from GPIO output is necessary
 
 def setDirection(control):
-    if joystick.get_button(control) == buttonUp:
-        resetMotor()
-        print "Go forward"
-        pwmA.start(speed) #Start it with 20% dutycycle
-        GPIO.output(Motor1A,GPIO.HIGH)
-        GPIO.output(Motor1B,GPIO.LOW)
-        GPIO.output(Motor1E,GPIO.HIGH)
-        pwmB.start(speed) #Start it with 20% dutycycle
-        GPIO.output(Motor2A,GPIO.HIGH)
-        GPIO.output(Motor2B,GPIO.LOW)
-        GPIO.output(Motor2E,GPIO.HIGH)
-    elif joystick.get_button(control) == buttonDown:
-        resetMotor()
-        print "GO backward"
-        pwmA.ChangeDutyCycle(speed) # increase dutycycle 30% dutycycle
-        GPIO.output(Motor1A,GPIO.LOW)
-        GPIO.output(Motor1B,GPIO.HIGH)
-        GPIO.output(Motor1E,GPIO.HIGH)
-        pwmB.ChangeDutyCycle(speed) # increase dutycycle 30% dutycycle
-        GPIO.output(Motor2A,GPIO.LOW)
-        GPIO.output(Motor2B,GPIO.HIGH)
-        GPIO.output(Motor2E,GPIO.HIGH)
-    elif joystick.get_button(control) == buttonCross:
-        resetMotor()
-        GPIO.cleanup()
-    else: 
-        print "button without function!"
+    if joystick.get_button(control):
+        if control == buttonUp:
+            resetMotor()
+            print "Go forward"
+            pwmA.start(speed) #Start it with 20% dutycycle
+            GPIO.output(Motor1A,GPIO.HIGH)
+            GPIO.output(Motor1B,GPIO.LOW)
+            GPIO.output(Motor1E,GPIO.HIGH)
+            pwmB.start(speed) #Start it with 20% dutycycle
+            GPIO.output(Motor2A,GPIO.HIGH)
+            GPIO.output(Motor2B,GPIO.LOW)
+            GPIO.output(Motor2E,GPIO.HIGH)
+        elif control == buttonDown:
+            resetMotor()
+            print "GO backward"
+            pwmA.ChangeDutyCycle(speed) # increase dutycycle 30% dutycycle
+            GPIO.output(Motor1A,GPIO.LOW)
+            GPIO.output(Motor1B,GPIO.HIGH)
+            GPIO.output(Motor1E,GPIO.HIGH)
+            pwmB.ChangeDutyCycle(speed) # increase dutycycle 30% dutycycle
+            GPIO.output(Motor2A,GPIO.LOW)
+            GPIO.output(Motor2B,GPIO.HIGH)
+            GPIO.output(Motor2E,GPIO.HIGH)
+        elif control == buttonCross:
+            resetMotor()
+            GPIO.cleanup()
+        else: 
+            print "button without function!"
 
 
 while True:
