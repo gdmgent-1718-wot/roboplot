@@ -8,6 +8,20 @@ pygame.init()
 # Set board control
 GPIO.setmode(GPIO.BCM)
 
+# aantal joysticks geconnecteerd
+joystick_count = pygame.joystick.get_count()
+print "Aantal controllers: " + str(joystick_count)
+
+if joystick_count == 0:
+    # sluiten als er geen connectie is
+    print ("Er zijn geen joysticks gevonden")
+    pygame.quit()
+    sys.exit()
+else:
+    # init joystick
+    joystick = pygame.joystick.Joystick(0)
+    joystick.init()
+
 buttons = joystick.get_numbuttons()
 hats = joystick.get_numhats()
 speed = 30
