@@ -22,6 +22,8 @@ else:
     joystick = pygame.joystick.Joystick(0)
     joystick.init()
 
+
+axes = joystick.get_numaxes()
 buttons = joystick.get_numbuttons()
 hats = joystick.get_numhats()
 speed = 30
@@ -58,6 +60,15 @@ pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-04 for PWM
 
 # functions
  
+def getAxis(number):
+    # bij het bewegen joystick (axis)
+    # bij het loslaten van joystick is de axis niet altijd 0
+    if joystick.get_axis(number) < -0.1 or joystick.get_axis(number) > 0.1:
+      # waarden tussen -1.0 en 1.0
+      print "Waarde %s" %(joystick.get_axis(number))
+      print "KnopI d: %s" %(number)
+ 
+
 def getButton(number):
     # 1 indien ingedrukt 0 indien niet ingedrukt
     if joystick.get_button(number):
