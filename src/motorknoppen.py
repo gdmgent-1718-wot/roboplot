@@ -116,6 +116,8 @@ def setDirection(control):
             GPIO.cleanup()
         else: 
             print "button without function!"
+    else:
+        print "no button pressed"
 
 
 while True:
