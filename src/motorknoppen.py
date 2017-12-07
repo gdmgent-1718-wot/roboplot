@@ -63,7 +63,7 @@ def resetMotor():
     pwmB.stop() #stop PWM from GPIO output is necessary
 
 def setDirection(control):
-    if joystick.get_button(number) = buttonUp:
+    if joystick.get_button(control) = buttonUp:
         resetMotor()
         print "Go forward"
         pwmA.start(speed) #Start it with 20% dutycycle
@@ -74,7 +74,7 @@ def setDirection(control):
         GPIO.output(Motor2A,GPIO.HIGH)
         GPIO.output(Motor2B,GPIO.LOW)
         GPIO.output(Motor2E,GPIO.HIGH)
-    else if joystick.get_button(number) = buttonDown:
+    else if joystick.get_button(control) = buttonDown:
         resetMotor()
         print "GO backward"
         pwmA.ChangeDutyCycle(speed) # increase dutycycle 30% dutycycle
@@ -85,7 +85,7 @@ def setDirection(control):
         GPIO.output(Motor2A,GPIO.LOW)
         GPIO.output(Motor2B,GPIO.HIGH)
         GPIO.output(Motor2E,GPIO.HIGH)
-    else if joystick.get_button(number) = buttonCross:
+    else if joystick.get_button(control) = buttonCross:
         resetMotor()
         GPIO.cleanup()
     else print "button without function!"
