@@ -24,63 +24,63 @@ pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-04 for PWM
 pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-04 for PWM
 
 
-pwmA.start(20) #Start it with 20% dutycycle
+pwmA.start(15) #Start it with 20% dutycycle
 print "GO forward"
 GPIO.output(Motor1A,GPIO.HIGH)
 GPIO.output(Motor1B,GPIO.LOW)
 GPIO.output(Motor1E,GPIO.HIGH)
 
-pwmB.start(20) #Start it with 20% dutycycle
+pwmB.start(15) #Start it with 20% dutycycle
 print "GO forward"
 GPIO.output(Motor2A,GPIO.HIGH)
 GPIO.output(Motor2B,GPIO.LOW)
 GPIO.output(Motor2E,GPIO.HIGH)
 
-sleep(2)
+sleep(5)
 
 
 
-pwmA.ChangeDutyCycle(30) # increase dutycycle 30% dutycycle
+pwmA.ChangeDutyCycle(15) # increase dutycycle 30% dutycycle
 print "GO backward A"
 GPIO.output(Motor1A,GPIO.LOW)
 GPIO.output(Motor1B,GPIO.HIGH)
 GPIO.output(Motor1E,GPIO.HIGH)
 
-pwmB.ChangeDutyCycle(30) # increase dutycycle 30% dutycycle
+pwmB.ChangeDutyCycle(15) # increase dutycycle 30% dutycycle
 print "GO backward B"
 GPIO.output(Motor2A,GPIO.LOW)
 GPIO.output(Motor2B,GPIO.HIGH)
 GPIO.output(Motor2E,GPIO.HIGH)
 
-sleep(2)
+sleep(5)
 
-pwmA.start(50) # increase dutycycle 50% dutycycle
+pwmA.start(20) # increase dutycycle 50% dutycycle
 print "GO forward A"
 GPIO.output(Motor1A,GPIO.HIGH)
 GPIO.output(Motor1B,GPIO.LOW)
 GPIO.output(Motor1E,GPIO.HIGH)
 
-pwmB.start(50) # increase dutycycle 50% dutycycle
+pwmB.start(20) # increase dutycycle 50% dutycycle
 print "GO forward B"
 GPIO.output(Motor2A,GPIO.HIGH)
 GPIO.output(Motor2B,GPIO.LOW)
 GPIO.output(Motor2E,GPIO.HIGH)
 
-sleep(2)
+sleep(5)
 
-pwmA.ChangeDutyCycle(80) # increase dutycycle 50% dutycycle
+pwmA.ChangeDutyCycle(25) # increase dutycycle 50% dutycycle
 print "GO backward A"
 GPIO.output(Motor1A,GPIO.LOW)
 GPIO.output(Motor1B,GPIO.HIGH)
 GPIO.output(Motor1E,GPIO.HIGH)
 
-pwmB.ChangeDutyCycle(80) # increase dutycycle 50% dutycycle
+pwmB.ChangeDutyCycle(25) # increase dutycycle 50% dutycycle
 print "GO backward B"
 GPIO.output(Motor2A,GPIO.LOW)
 GPIO.output(Motor2B,GPIO.HIGH)
 GPIO.output(Motor2E,GPIO.HIGH)
 
-sleep(2)
+sleep(5)
 
 print "NOW Stop A + B"
 GPIO.output(Motor1E,GPIO.LOW)
