@@ -88,7 +88,8 @@ def setDirection(control):
     if joystick.get_button(control) == buttonCross:
         resetMotor()
         GPIO.cleanup()
-    else print "button without function!"
+    else 
+        print "button without function!"
 
 
 while True:
