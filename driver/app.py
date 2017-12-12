@@ -48,8 +48,8 @@ GPIO.setup(Motor4E,GPIO.OUT)
 
 pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-25 for PWM
 pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
-pwmC=GPIO.PWM(25,-100) #confuguring Enable pin means GPIO-25 for PWM
-pwmD=GPIO.PWM(17,-100) #confuguring Enable pin means GPIO-17 for PWM
+pwmC=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-25 for PWM
+pwmD=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 
 # Start update cycle
 while True:
