@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 # Imports
-import math, time, explorerhat
+#import math, time, explorerhat
+import math, time
 from lib import PS3
 
 # PS3 Controller setup
@@ -47,16 +48,16 @@ while True:
 	# Debugging
 	print "[L: " + str(left) + ", R: " + str(right) + "]"
 
-	if (left == 0):
-		explorerhat.motor.one.stop()
-	elif (left > 0):
-		explorerhat.motor.one.forward(left)
-	elif (left < 0):
-		explorerhat.motor.one.backward(left * -1)
+	#if (left == 0):
+	#	explorerhat.motor.one.stop()
+	#elif (left > 0):
+	#	explorerhat.motor.one.forward(left)
+	#elif (left < 0):
+	#	explorerhat.motor.one.backward(left * -1)
 
-        if (right == 0):
-                explorerhat.motor.two.stop()
-        elif (right > 0):
-                explorerhat.motor.two.forward(right)
-        elif (right < 0):
-                explorerhat.motor.two.backward(right * -1)
+        #if (right == 0):
+        #        explorerhat.motor.two.stop()
+        #elif (right > 0):
+        #        explorerhat.motor.two.forward(right)
+        #elif (right < 0):
+         #       explorerhat.motor.two.backward(right * -1)
