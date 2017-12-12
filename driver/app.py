@@ -21,7 +21,7 @@ Motor2B = 27 # Set GPIO-24 as Input 2 of the Controller IC
 Motor2E = 17 # Set GPIO-25 as Enable pin 1 of the controller IC
 
 #lampen
-lamp1 =  29
+lamp1 =  5
 
 GPIO.setup(Motor1A,GPIO.OUT)
 GPIO.setup(Motor1B,GPIO.OUT)
