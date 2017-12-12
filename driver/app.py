@@ -100,8 +100,6 @@ while True:
 		pwmB.ChangeDutyCycle(right * -1)
 		GPIO.output(Motor2A,GPIO.HIGH)
 		GPIO.output(Motor2B,GPIO.LOW)
-
 	if (ps3.cross):
 		print "use cross"
-		GPIO.output(lamp1, GPIO.IN)
-		print "aan"
+		GPIO.output(lamp1, not GPIO.input(lamp1))
