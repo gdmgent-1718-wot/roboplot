@@ -80,11 +80,13 @@ while True:
 		pwmA.ChangeDutyCycle(left)
 		GPIO.output(Motor1A,GPIO.LOW)
 		GPIO.output(Motor1B,GPIO.HIGH)
+		GPIO.output(Motor1E,GPIO.HIGH)
 	elif (left < 0):
 		pwmA.start(0)
 		pwmA.ChangeDutyCycle(left * -1)
 		GPIO.output(Motor1A,GPIO.HIGH)
 		GPIO.output(Motor1B,GPIO.LOW)
+		GPIO.output(Motor1E,GPIO.HIGH)
 		
         if (right == 0):
                 pwmB.stop()
@@ -94,9 +96,11 @@ while True:
 		pwmB.ChangeDutyCycle(right)
 		GPIO.output(Motor2A,GPIO.LOW)
 		GPIO.output(Motor2B,GPIO.HIGH)
+		GPIO.output(Motor2E,GPIO.HIGH)
         elif (right < 0):
 		pwmB.start(0)
 		pwmB.ChangeDutyCycle(right * -1)
 		GPIO.output(Motor2A,GPIO.HIGH)
 		GPIO.output(Motor2B,GPIO.LOW)
+		GPIO.output(Motor2E,GPIO.HIGH)
                 
