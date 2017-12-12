@@ -102,7 +102,7 @@ while True:
 		GPIO.output(Motor2B,GPIO.LOW)
 	if (ps3.cross):
 		print "use cross"
-		if ( GPIO.gpio_function(lamp1) = 0 ):
+		if ( GPIO.gpio_function(lamp1) == 0 ):
 			GPIO.output(lamp1, GPIO.IN)
 			print 'aan'
 		else:
