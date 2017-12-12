@@ -104,11 +104,11 @@ while True:
 		print "use cross"
 		if (GPIO.output(lamp1, GPIO.OUT)):
 			usage = GPIO.gpio_function(29)  
-			print usage
+			print usage + 'if'
 			GPIO.output(lamp1, GPIO.IN)
 		else:
 			usage = GPIO.gpio_function(29) 
-			print usage 
+			print usage + 'else'
 			GPIO.output(lamp1, GPIO.OUT)
 		#if (GPIO.input(lamp1) = true):
 		#	print "lampje is aan "
