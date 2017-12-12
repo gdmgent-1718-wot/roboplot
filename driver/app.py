@@ -100,18 +100,7 @@ while True:
 		pwmB.ChangeDutyCycle(right * -1)
 		GPIO.output(Motor2A,GPIO.HIGH)
 		GPIO.output(Motor2B,GPIO.LOW)
+		
 	if (ps3.cross):
 		print "use cross"
-		if ( GPIO.gpio_function(lamp1) == 0 ):
-			GPIO.output(lamp1, 1)
-			print 'aan'
-		else:
-			GPIO.output(lamp1, 0)
-			print 'uit'
-		#if (GPIO.input(lamp1) = true):
-		#	print "lampje is aan "
-		#	GPIO.output(lamp1,GPIO.OUT)
-		#else:
-		#	print "lampje is uit "
-		#	GPIO.output(lamp1,True)
-                
+		GPIO.output(lamp1, not GPIO.input(lamp1))
