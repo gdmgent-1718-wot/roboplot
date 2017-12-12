@@ -100,7 +100,7 @@ while True:
 		pwmB.ChangeDutyCycle(right * -1)
 		GPIO.output(Motor2A,GPIO.HIGH)
 		GPIO.output(Motor2B,GPIO.LOW)
-	if (joystick.get_button(13)):
+	if (ps3.cross):
 		if (GPIO.input(lamp1)):
 			GPIO.output(lamp1,False)
 		else:
