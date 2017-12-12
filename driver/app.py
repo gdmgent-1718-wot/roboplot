@@ -82,8 +82,8 @@ while True:
         if (right == 0):
                 pwmB.stop()
         elif (right > 0):
-		pwmA.start(0)
+		pwmB.start(0)
                 pwmB.ChangeDutyCycle(left)
         elif (right < 0):
-		pwmA.start(0)
+		pwmB.start(0)
                 pwmB.ChangeDutyCycle(left * -1)
