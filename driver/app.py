@@ -101,10 +101,16 @@ while True:
 		GPIO.output(Motor2A,GPIO.HIGH)
 		GPIO.output(Motor2B,GPIO.LOW)
 	if (ps3.cross):
-		if (GPIO.input(lamp1) = true):
-			print "lampje is aan "
-			GPIO.output(lamp1,False)
-		else:
+		if (GPIO.output(lamp1, GPIO.HIGH)):
 			print "lampje is uit "
-			GPIO.output(lamp1,True)
+			GPIO.output(lamp1, GPIO.false)
+		else:
+			print "lampje is aan "
+			GPIO.output(lamp1, GPIO.HIGH)
+		#if (GPIO.input(lamp1) = true):
+		#	print "lampje is aan "
+		#	GPIO.output(lamp1,GPIO.OUT)
+		#else:
+		#	print "lampje is uit "
+		#	GPIO.output(lamp1,True)
                 
