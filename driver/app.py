@@ -74,6 +74,7 @@ while True:
 
 	if (left == 0):		
 		pwmA.stop()
+		GPIO.cleanup()
 	elif (left > 0):
 		pwmA.start(0)
 		pwmA.ChangeDutyCycle(left)
@@ -84,8 +85,10 @@ while True:
 		pwmA.ChangeDutyCycle(left * -1)
 		GPIO.output(Motor1A,GPIO.HIGH)
 		GPIO.output(Motor1B,GPIO.LOW)
+		
         if (right == 0):
                 pwmB.stop()
+		GPIO.cleanup()
         elif (right > 0):
 		pwmB.start(0)
 		pwmB.ChangeDutyCycle(right)
