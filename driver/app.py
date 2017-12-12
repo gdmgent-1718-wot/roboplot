@@ -71,16 +71,19 @@ while True:
 	# Debugging
 	print "[L: " + str(left) + ", R: " + str(right) + "]"
 
-	if (left == 0):
+	if (left == 0):		
 		pwmA.stop()
 	elif (left > 0):
+		pwmA.start(0)
 		pwmA.ChangeDutyCycle(left)
 	elif (left < 0):
+		pwmA.start(0)
 		pwmA.ChangeDutyCycle(left * -1)
-
         if (right == 0):
                 pwmB.stop()
         elif (right > 0):
+		pwmA.start(0)
                 pwmB.ChangeDutyCycle(left)
         elif (right < 0):
+		pwmA.start(0)
                 pwmB.ChangeDutyCycle(left * -1)
