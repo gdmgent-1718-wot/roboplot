@@ -20,6 +20,16 @@ Motor2A = 22 # Set GPIO-23 as Input 1 of the controller IC
 Motor2B = 27 # Set GPIO-24 as Input 2 of the Controller IC
 Motor2E = 17 # Set GPIO-25 as Enable pin 1 of the controller IC
 
+#motor3
+Motor3A = 24 # Set GPIO-23 as Input 1 of the controller IC
+Motor3B = 23 # Set GPIO-24 as Input 2 of the Controller IC
+Motor3E = 25 # Set GPIO-25 as Enable pin 1 of the controller IC
+
+#motor4
+Motor4A = 27 # Set GPIO-23 as Input 1 of the controller IC
+Motor4B = 22 # Set GPIO-24 as Input 2 of the Controller IC
+Motor4E = 17 # Set GPIO-25 as Enable pin 1 of the controller IC
+
 GPIO.setup(Motor1A,GPIO.OUT)
 GPIO.setup(Motor1B,GPIO.OUT)
 GPIO.setup(Motor1E,GPIO.OUT)
@@ -28,8 +38,18 @@ GPIO.setup(Motor2A,GPIO.OUT)
 GPIO.setup(Motor2B,GPIO.OUT)
 GPIO.setup(Motor2E,GPIO.OUT)
 
-pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-04 for PWM
-pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-04 for PWM
+GPIO.setup(Motor3A,GPIO.OUT)
+GPIO.setup(Motor3B,GPIO.OUT)
+GPIO.setup(Motor3E,GPIO.OUT)
+
+GPIO.setup(Motor4A,GPIO.OUT)
+GPIO.setup(Motor4B,GPIO.OUT)
+GPIO.setup(Motor4E,GPIO.OUT)
+
+pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-25 for PWM
+pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
+pwmC=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-25 for PWM
+pwmD=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 
 # Start update cycle
 while True:
@@ -73,17 +93,19 @@ while True:
 
 	if (left == 0):		
 		pwmA.stop()
+		pwmC.stop()
 	elif (left > 0):
 		pwmA.start(0)
 		pwmA.ChangeDutyCycle(left)
 	elif (left < 0):
-		pwmA.start(0)
-		pwmA.ChangeDutyCycle(left)
+		pwmC.start(0)
+		pwmC.ChangeDutyCycle(left)
         if (right == 0):
                 pwmB.stop()
+		pwmD.stop()
         elif (right > 0):
 		pwmB.start(0)
                 pwmB.ChangeDutyCycle(right)
         elif (right < 0):
-		pwmB.start(0)
-                pwmB.ChangeDutyCycle(right)
+		pwmD.start(0)
+                pwmD.ChangeDutyCycle(right)
