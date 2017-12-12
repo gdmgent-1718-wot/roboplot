@@ -20,6 +20,8 @@ Motor2A = 22 # Set GPIO-23 as Input 1 of the controller IC
 Motor2B = 27 # Set GPIO-24 as Input 2 of the Controller IC
 Motor2E = 17 # Set GPIO-25 as Enable pin 1 of the controller IC
 
+#lampen
+lamp1 =  29
 
 GPIO.setup(Motor1A,GPIO.OUT)
 GPIO.setup(Motor1B,GPIO.OUT)
@@ -28,6 +30,8 @@ GPIO.setup(Motor1E,GPIO.OUT)
 GPIO.setup(Motor2A,GPIO.OUT)
 GPIO.setup(Motor2B,GPIO.OUT)
 GPIO.setup(Motor2E,GPIO.OUT)
+
+GPIO.setup(lamp1, GPIO.OUT)
 
 pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-25 for PWM
 pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
@@ -96,4 +100,9 @@ while True:
 		pwmB.ChangeDutyCycle(right * -1)
 		GPIO.output(Motor2A,GPIO.HIGH)
 		GPIO.output(Motor2B,GPIO.LOW)
+	elif (joystick.get_button(13)):
+		if (GPIO.input(lamp1)):
+			GPIO.output(lamp1,False)
+		else:
+			GPIO.output(lamp1,True)
                 
