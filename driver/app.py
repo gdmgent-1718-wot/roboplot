@@ -103,11 +103,10 @@ while True:
 	if (ps3.cross):
 		print "use cross"
 		if ( GPIO.gpio_function(lamp1) == 0 ):
-			GPIO.gpio_function(lamp1) = 1
- 			print 'aan'
+			GPIO.output(lamp1, 1)
+			print 'aan'
 		else:
-			GPIO.output(lamp1, GPIO.LOW)
-			GPIO.gpio_function(lamp1) = 0
+			GPIO.output(lamp1, 0)
 			print 'uit'
 		#if (GPIO.input(lamp1) = true):
 		#	print "lampje is aan "
