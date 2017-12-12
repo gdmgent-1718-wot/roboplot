@@ -3,10 +3,33 @@
 # Imports
 #import math, time, explorerhat
 import math, time
+import RPi.GPIO as GPIO
 from lib import PS3
 
 # PS3 Controller setup
 ps3 = PS3.Controller()
+
+GPIO.setmode(GPIO.BCM)
+#motor1
+Motor1A = 23 # Set GPIO-23 as Input 1 of the controller IC
+Motor1B = 24 # Set GPIO-24 as Input 2 of the Controller IC
+Motor1E = 25 # Set GPIO-25 as Enable pin 1 of the controller IC
+
+#motor2
+Motor2A = 22 # Set GPIO-23 as Input 1 of the controller IC
+Motor2B = 27 # Set GPIO-24 as Input 2 of the Controller IC
+Motor2E = 17 # Set GPIO-25 as Enable pin 1 of the controller IC
+
+GPIO.setup(Motor1A,GPIO.OUT)
+GPIO.setup(Motor1B,GPIO.OUT)
+GPIO.setup(Motor1E,GPIO.OUT)
+
+GPIO.setup(Motor2A,GPIO.OUT)
+GPIO.setup(Motor2B,GPIO.OUT)
+GPIO.setup(Motor2E,GPIO.OUT)
+
+pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-04 for PWM
+pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-04 for PWM
 
 # Start update cycle
 while True:
@@ -48,16 +71,16 @@ while True:
 	# Debugging
 	print "[L: " + str(left) + ", R: " + str(right) + "]"
 
-	#if (left == 0):
-	#	explorerhat.motor.one.stop()
-	#elif (left > 0):
-	#	explorerhat.motor.one.forward(left)
-	#elif (left < 0):
-	#	explorerhat.motor.one.backward(left * -1)
+	if (left == 0):
+		pwmA.stop()
+	elif (left > 0):
+		pwmA.ChangeDutyCycle(left)
+	elif (left < 0):
+		pwmA.ChangeDutyCycle(left * -1)
 
-        #if (right == 0):
-        #        explorerhat.motor.two.stop()
-        #elif (right > 0):
-        #        explorerhat.motor.two.forward(right)
-        #elif (right < 0):
-         #       explorerhat.motor.two.backward(right * -1)
+        if (right == 0):
+                pwmB.stop()
+        elif (right > 0):
+                pwmB.ChangeDutyCycle(left)
+        elif (right < 0):
+                pwmB.ChangeDutyCycle(left * -1)
