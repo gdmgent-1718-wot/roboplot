@@ -77,23 +77,23 @@ while True:
 	elif (left > 0):
 		pwmA.start(0)
 		pwmA.ChangeDutyCycle(left)
-		GPIO.setup(Motor1A,GPIO.LOW)
-		GPIO.setup(Motor1B,GPIO.HIGH)
+		GPIO.output(Motor1A,GPIO.LOW)
+		GPIO.output(Motor1B,GPIO.HIGH)
 	elif (left < 0):
 		pwmA.start(0)
-		pwmA.ChangeDutyCycle(left)
-		GPIO.setup(Motor1A,GPIO.HIGH)
-		GPIO.setup(Motor1B,GPIO.LOW)
+		pwmA.ChangeDutyCycle(left * -1)
+		GPIO.output(Motor1A,GPIO.HIGH)
+		GPIO.output(Motor1B,GPIO.LOW)
         if (right == 0):
                 pwmB.stop()
         elif (right > 0):
 		pwmB.start(0)
 		pwmB.ChangeDutyCycle(right)
-		GPIO.setup(Motor2A,GPIO.LOW)
-		GPIO.setup(Motor2B,GPIO.HIGH)
+		GPIO.output(Motor2A,GPIO.LOW)
+		GPIO.output(Motor2B,GPIO.HIGH)
         elif (right < 0):
 		pwmB.start(0)
-		pwmB.ChangeDutyCycle(right)
-		GPIO.setup(Motor2A,GPIO.HIGH)
-		GPIO.setup(Motor2B,GPIO.LOW)
+		pwmB.ChangeDutyCycle(right * -1)
+		GPIO.output(Motor2A,GPIO.HIGH)
+		GPIO.output(Motor2B,GPIO.LOW)
                 
