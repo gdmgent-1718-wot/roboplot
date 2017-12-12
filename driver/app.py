@@ -103,11 +103,11 @@ while True:
 	if (ps3.cross):
 		print "use cross"
 		if (GPIO.output(lamp1, GPIO.OUT)):
-			usage = GPIO.gpio_function(port)  
+			usage = GPIO.gpio_function(29)  
 			print usage
 			GPIO.output(lamp1, GPIO.IN)
 		else:
-			usage = GPIO.gpio_function(port) 
+			usage = GPIO.gpio_function(29) 
 			print usage 
 			GPIO.output(lamp1, GPIO.OUT)
 		#if (GPIO.input(lamp1) = true):
