@@ -90,7 +90,9 @@ while True:
 
 	# Debugging
 	print "[L: " + str(left) + ", R: " + str(right) + "]"
-
+	item = {"l": str(left),"r": str(right)}
+    data.append(item)
+    x += 1
 	if (left == 0):		
 		pwmA.stop()
 	elif (left > 0):
@@ -129,9 +131,6 @@ while True:
 			duration_s = raw_input(4)  #ask the user to type in the duration
 			duration = float(duration_s)  #convert user input to a floating decimal
 			buzz(pitch, duration)  #feed the pitch and duration to the function, "buzz"
-	item = {"l": 4,"r": 5}
-    data.append(item)
-    x += 1
 
 with io.open('data.json', 'w', encoding='utf8') as outfile:
     str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
