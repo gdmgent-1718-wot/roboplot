@@ -114,7 +114,7 @@ while True:
 		if (ps3.a_triangle > 0):
 			buttonDelay = 0
 			GPIO.output(klakson, True)
-			time.sleemp(.3)
+			time.sleep(.3)
 			GPIO.output(klakson, False)
 
 	
