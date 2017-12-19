@@ -40,6 +40,16 @@ pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 
 buttonDelay = 0
 
+def buzz(pitch, duration):
+ period = 1.0 / pitch
+ delay = period / 2 
+ cycles = int(duration * pitch)
+ 
+ for i in range(cycles): 
+   GPIO.output(klakson, True)  
+   time.sleep(delay)  
+   GPIO.output(klakson, False)  
+   time.sleep(delay)
 
 # Start update cycle
 while True:
@@ -112,8 +122,11 @@ while True:
 			buttonDelay = 0
 			GPIO.output(lamp1, not GPIO.input(lamp1))
 		if (ps3.a_triangle > 0):
-			buttonDelay = 0
-			GPIO.output(klakson, not GPIO.input(lamp1))
+			pitch_s = raw_input("1500") 
+			pitch = float(pitch_s)    #convert user input to a floating decimal
+			duration_s = raw_input("4")  #ask the user to type in the duration
+			duration = float(duration_s)  #convert user input to a floating decimal
+			buzz(pitch, duration)  #feed the pitch and duration to the function, "buzz"
 
 	
 		
