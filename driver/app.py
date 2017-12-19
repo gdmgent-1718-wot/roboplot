@@ -8,6 +8,7 @@ from lib import PS3
 import json
 import io
 
+active = True
 #write to json
 try:
     to_unicode = unicode
@@ -52,7 +53,7 @@ pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 buttonDelay = 0
 
 # Start update cycle
-while True:
+while active:
 	# Get PS3 update
 	ps3.update()
 
@@ -118,6 +119,8 @@ while True:
 		GPIO.output(Motor2B,GPIO.LOW)
 	buttonDelay += 1
 	print buttonDelay
+	if (ps3.a_square > 0):
+		active = False
 	if (buttonDelay > 1500):
 		if (ps3.a_cross > 0):
 			buttonDelay = 0
