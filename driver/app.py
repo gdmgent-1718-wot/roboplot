@@ -106,7 +106,7 @@ while True:
 	x += 1
 	print x
 	if (x > 3000):
-		if (ps3.a_cross):
+		if (ps3.a_cross > 0):
 			print ps3.a_cross
 			x = 0
 			GPIO.output(lamp1, not GPIO.input(lamp1))
