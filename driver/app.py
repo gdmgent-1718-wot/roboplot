@@ -92,7 +92,6 @@ while True:
 	print "[L: " + str(left) + ", R: " + str(right) + "]"
 	item = {"l": str(left),"r": str(right)}
     data.append(item)
-
 	if (left == 0):		
 		pwmA.stop()
 	elif (left > 0):
