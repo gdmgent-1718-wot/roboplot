@@ -4,8 +4,14 @@
 #import math, time, explorerhat
 import math, time
 import RPi.GPIO as GPIO
-from lib import PS3
+from lib import PS3 
+import json
+import io
 
+# data for writing to json
+data = []
+#create data for writing to json
+x = 1
 # PS3 Controller setup
 ps3 = PS3.Controller()
 
@@ -130,5 +136,12 @@ while True:
 			duration = float(duration_s)  #convert user input to a floating decimal
 			buzz(pitch, duration)  #feed the pitch and duration to the function, "buzz"
 
+	ax = {"l": str(left),"r": str(right)5}
+    data.append(ax)
+    x += 1
 	
+	#wegschrijven naar json		
+	with io.open('data.json', 'w', encoding='utf8') as outfile:
+    str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
+    outfile.write(to_unicode(str_))	
 		
