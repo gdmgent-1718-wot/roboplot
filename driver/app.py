@@ -136,7 +136,7 @@ while True:
 			duration = float(duration_s)  #convert user input to a floating decimal
 			buzz(pitch, duration)  #feed the pitch and duration to the function, "buzz"
 
-	ax = {"l": str(left),"r": str(right)5}
+	ax = {"l": str(left),"r": str(right)}
     data.append(ax)
     x += 1
 	
