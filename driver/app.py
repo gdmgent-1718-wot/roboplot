@@ -51,7 +51,7 @@ pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 buttonDelay = 0
 
 # Start update cycle
-while not ps3.a_start:
+while true:
 	# Get PS3 update
 	ps3.update()
 
