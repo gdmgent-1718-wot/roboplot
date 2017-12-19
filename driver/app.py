@@ -50,17 +50,6 @@ pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 
 buttonDelay = 0
 
-def buzz(pitch, duration):
- period = 1.0 / pitch
- delay = period / 2 
- cycles = int(duration * pitch)
- 
- for i in range(cycles): 
-   GPIO.output(klakson, True)  
-   time.sleep(delay)  
-   GPIO.output(klakson, False)  
-   time.sleep(delay)
-
 # Start update cycle
 while not ps3.a_start:
 	# Get PS3 update
