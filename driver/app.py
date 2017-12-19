@@ -7,6 +7,16 @@ import RPi.GPIO as GPIO
 from lib import PS3 
 import json
 import io
+
+#write to json
+try:
+    to_unicode = unicode
+except NameError:
+    to_unicode = str
+# data
+data = []
+#create data
+x = 1
 # PS3 Controller setup
 ps3 = PS3.Controller()
 
@@ -42,7 +52,7 @@ pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 buttonDelay = 0
 
 # Start update cycle
-while ps3.online > 0:
+while True:
 	# Get PS3 update
 	ps3.update()
 
@@ -119,3 +129,11 @@ while ps3.online > 0:
 			duration_s = raw_input(4)  #ask the user to type in the duration
 			duration = float(duration_s)  #convert user input to a floating decimal
 			buzz(pitch, duration)  #feed the pitch and duration to the function, "buzz"
+	item = {"l": 4,"r": 5}
+    data.append(item)
+    print("nummer %d " % (x))
+    x += 1
+
+with io.open('data.json', 'w', encoding='utf8') as outfile:
+    str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
+    outfile.write(to_unicode(str_))
