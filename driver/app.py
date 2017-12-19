@@ -7,7 +7,6 @@ import RPi.GPIO as GPIO
 from lib import PS3 
 import json
 import io
-
 # PS3 Controller setup
 ps3 = PS3.Controller()
 
@@ -108,6 +107,8 @@ while True:
 		GPIO.output(Motor2B,GPIO.LOW)
 	buttonDelay += 1
 	print buttonDelay
+	if (ps3.Controller.joystick_count == 0):
+		print "controller staat af"
 	if (buttonDelay > 1500):
 		if (ps3.a_cross > 0):
 			buttonDelay = 0
