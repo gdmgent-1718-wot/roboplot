@@ -122,6 +122,7 @@ while True:
 			buttonDelay = 0
 			GPIO.output(lamp1, not GPIO.input(lamp1))
 		if (ps3.a_triangle > 0):
+			buttonDelay = 0
 			pitch_s = raw_input("1500") 
 			pitch = float(pitch_s)    #convert user input to a floating decimal
 			print pitch
