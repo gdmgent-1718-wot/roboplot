@@ -62,7 +62,7 @@ def buzz(pitch, duration):
    time.sleep(delay)
 
 # Start update cycle
-while True:
+while not ps3.a_start:
 	# Get PS3 update
 	ps3.update()
 
@@ -142,8 +142,8 @@ while True:
 	ax = {"l": str(left),"r": str(right)}
 	data.append(ax)
 	x += 1		
-	#wegschrijven naar json		
-	with io.open('data.json', 'w', encoding='utf8') as outfile:
-	str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
-	outfile.write(to_unicode(str_))	
+#wegschrijven naar json			
+with io.open('data.json', 'w', encoding='utf8') as outfile:
+str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
+outfile.write(to_unicode(str_))	
 		
