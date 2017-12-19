@@ -131,7 +131,6 @@ while True:
 			buzz(pitch, duration)  #feed the pitch and duration to the function, "buzz"
 	item = {"l": 4,"r": 5}
     data.append(item)
-    print("nummer %d " % (x))
     x += 1
 
 with io.open('data.json', 'w', encoding='utf8') as outfile:
