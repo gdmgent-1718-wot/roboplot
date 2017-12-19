@@ -107,7 +107,7 @@ while True:
 		GPIO.output(Motor2B,GPIO.LOW)
 	buttonDelay += 1
 	print buttonDelay
-	if (ps3.Controller.joystick_count == 0):
+	if (ps3.online == 0):
 		print "controller staat af"
 	if (buttonDelay > 1500):
 		if (ps3.a_cross > 0):

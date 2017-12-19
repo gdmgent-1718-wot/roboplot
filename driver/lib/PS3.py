@@ -88,7 +88,7 @@ class Controller:
 		self.a_triangle			=button_analog[16]
 		self.a_circle			=button_analog[17]
 		self.a_square			=button_analog[19]
-		self.a_cross				=button_analog[18]
+		self.a_cross			=button_analog[18]
 
 		self.a_joystick_left_x	=button_analog[0]
 		self.a_joystick_left_y	=button_analog[1]
@@ -97,6 +97,8 @@ class Controller:
 		self.acc_x				=button_analog[23]
 		self.acc_y				=button_analog[24]
 		self.acc_z				=button_analog[25]
+
+		self.online				=Controller.joystick_count
 		
 		#Read digital values
 		for i in range(0,self.numbuttons):
