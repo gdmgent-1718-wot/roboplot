@@ -125,7 +125,6 @@ while True:
 			buttonDelay = 0
 			pitch_s = raw_input("1500") 
 			pitch = float(pitch_s)    #convert user input to a floating decimal
-			print pitch
 			duration_s = raw_input("4")  #ask the user to type in the duration
 			duration = float(duration_s)  #convert user input to a floating decimal
 			buzz(pitch, duration)  #feed the pitch and duration to the function, "buzz"
