@@ -22,6 +22,7 @@ Motor2E = 17 # Set GPIO-25 as Enable pin 1 of the controller IC
 
 #lampen
 lamp1 =  5
+klakson = 6
 
 GPIO.setup(Motor1A,GPIO.OUT)
 GPIO.setup(Motor1B,GPIO.OUT)
@@ -32,11 +33,12 @@ GPIO.setup(Motor2B,GPIO.OUT)
 GPIO.setup(Motor2E,GPIO.OUT)
 
 GPIO.setup(lamp1, GPIO.OUT)
+GPIO.setup(klakson, GPIO.OUT)
 
 pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-25 for PWM
 pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 
-x = 0
+buttonDelay = 0
 
 
 # Start update cycle
@@ -103,11 +105,17 @@ while True:
 		pwmB.ChangeDutyCycle(right * -1)
 		GPIO.output(Motor2A,GPIO.HIGH)
 		GPIO.output(Motor2B,GPIO.LOW)
-	x += 1
-	print x
-	if (x > 1500):
+	buttonDelay += 1
+	print buttonDelay
+	if (buttonDelay > 1500):
 		if (ps3.a_cross > 0):
-			print ps3.a_cross
-			x = 0
+			buttonDelay = 0
 			GPIO.output(lamp1, not GPIO.input(lamp1))
+		if (ps4.a_triangle > 0):
+			buttonDelay = 0
+			GPIO.output(klakson, True)
+			time.sleemp(.3)
+			GPIO.output(klakson, False)
+
+	
 		
