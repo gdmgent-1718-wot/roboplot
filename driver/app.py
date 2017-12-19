@@ -111,7 +111,7 @@ while True:
 		if (ps3.a_cross > 0):
 			buttonDelay = 0
 			GPIO.output(lamp1, not GPIO.input(lamp1))
-		if (ps4.a_triangle > 0):
+		if (ps3.a_triangle > 0):
 			buttonDelay = 0
 			GPIO.output(klakson, True)
 			time.sleemp(.3)
