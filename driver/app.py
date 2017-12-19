@@ -105,7 +105,7 @@ while True:
 		GPIO.output(Motor2B,GPIO.LOW)
 	x += 1
 	print x
-	if (x > 3000):
+	if (x > 1500):
 		if (ps3.a_cross > 0):
 			print ps3.a_cross
 			x = 0
