@@ -36,6 +36,9 @@ GPIO.setup(lamp1, GPIO.OUT)
 pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-25 for PWM
 pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 
+x = 0
+
+
 # Start update cycle
 while True:
 	# Get PS3 update
