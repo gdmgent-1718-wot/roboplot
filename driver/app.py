@@ -7,7 +7,11 @@ import RPi.GPIO as GPIO
 from lib import PS3 
 import json
 import io
-
+#voor het wegschrijven naar ascii
+try:
+    to_unicode = unicode
+except NameError:
+    to_unicode = str
 # data for writing to json
 data = []
 #create data for writing to json
