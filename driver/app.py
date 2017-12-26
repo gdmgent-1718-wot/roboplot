@@ -63,10 +63,10 @@ while active:
 	left = ((left_joystick_y + 1) / 2) * 100
 	if (left < 0):
     left = 0
-	if (left == 50):
-		left = 0
-	else:
-		left = left * 2 - 100
+		if (left == 50):
+			left = 0
+		else:
+			left = left * 2 - 100
 	
 	# Right joystick parsing of data
 	right_joystick_y = ps3.a_joystick_right_y
@@ -79,10 +79,10 @@ while active:
 	right = ((right_joystick_y + 1) / 2) * 100
 	if (right < 0):
 		right = 0
-	if (right == 50):
-		right = 0
-	else:
-		right = right * 2 - 100
+		if (right == 50):
+			right = 0
+		else:
+			right = right * 2 - 100
 
 	# Debugging
 	print "[L: " + str(left) + ", R: " + str(right) + "]"
