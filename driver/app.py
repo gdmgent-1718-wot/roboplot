@@ -50,6 +50,15 @@ pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 
 buttonDelay = 0
 
+#Print Controls to user
+print("")
+print("Joysticks:")
+print("LEFT JOY UP/DOWN:    LEFT MOTOR FORWARD/BACKWARD")
+print("RIGHT JOY UP/DOWN:   RIGHT MOTOR FORWARD/BACKWARD")
+print("SELECT: TOGGLE LIGHT ON/OFF")
+print("")
+print("To Close, press 'Ctrl + C'")
+
 # Start update cycle
 while active:
 	# Get PS3 update
@@ -116,7 +125,7 @@ while active:
 		GPIO.output(Motor2B,GPIO.LOW)
 
 	buttonDelay += 1
-	if (ps3.a_square > 0):
+	if (ps3.select > 0):
 		active = False
 	if (buttonDelay > 1500):
 		if (ps3.a_cross > 0):
