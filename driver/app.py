@@ -45,7 +45,7 @@ GPIO.setup(Motor2E,GPIO.OUT)
 GPIO.setup(lamp1, GPIO.OUT)
 
 pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-25 for PWM
-pwmA=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
+pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 
 
 buttonDelay = 0
