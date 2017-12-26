@@ -7,15 +7,12 @@ import RPi.GPIO as GPIO
 from lib import PS3 
 import json
 import io
-import threading
 active = True
 #write to json
 try:
     to_unicode = unicode
 except NameError:
     to_unicode = str
-#interval for logging axis to json in seconds
-interval = 2
 # data
 data = []
 #create data
@@ -58,7 +55,6 @@ buttonDelay = 0
 while active:
 	# Get PS3 update
 	ps3.update()
-
 	# Left joystick parsing of data
 	left_joystick_y = ps3.a_joystick_left_y
 	if (left_joystick_y != 0):
@@ -93,8 +89,8 @@ while active:
 
 	# Debugging
 	print "[L: " + str(left) + ", R: " + str(right) + "]"
-	#item = {"l": str(left),"r": str(right)}
-	#data.append(item)
+	item = {"l": str(left),"r": str(right)}
+	data.append(item)
 	if (left == 0):		
 		pwmA.stop()
 	elif (left > 0):
@@ -126,12 +122,6 @@ while active:
 		if (ps3.a_cross > 0):
 			buttonDelay = 0
 			GPIO.output(lamp1, not GPIO.input(lamp1))
-#with io.open('data.json', 'w', encoding='utf8') as outfile:
-#    str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
-#    outfile.write(to_unicode(str_))
-def myPeriodicFunction():
-    print("print")
-def startTimer():
-    threading.Timer(interval, startTimer).start()
-    myPeriodicFunction()
-startTimer()
+with io.open('data.json', 'w', encoding='utf8') as outfile:
+    str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
+    outfile.write(to_unicode(str_))
