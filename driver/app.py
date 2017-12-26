@@ -124,7 +124,7 @@ while active:
 		GPIO.output(Motor2A,GPIO.HIGH)
 		GPIO.output(Motor2B,GPIO.LOW)
 	buttonDelay += 1
-	if (ps3.select = 1):
+	if (ps3.select = True):
 		active = False
 	if (buttonDelay > 1500):
 		if (ps3.a_cross > 0):
