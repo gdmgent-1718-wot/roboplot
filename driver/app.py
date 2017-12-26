@@ -126,14 +126,6 @@ while active:
 		if (ps3.a_cross > 0):
 			buttonDelay = 0
 			GPIO.output(lamp1, not GPIO.input(lamp1))
-		if (ps3.a_triangle > 0):
-			buttonDelay = 0
-			pitch_s = raw_input(1500) 
-			pitch = float(pitch_s)    #convert user input to a floating decimal
-			print pitch
-			duration_s = raw_input(4)  #ask the user to type in the duration
-			duration = float(duration_s)  #convert user input to a floating decimal
-			buzz(pitch, duration)  #feed the pitch and duration to the function, "buzz"
 #with io.open('data.json', 'w', encoding='utf8') as outfile:
 #    str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
 #    outfile.write(to_unicode(str_))
