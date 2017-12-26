@@ -96,7 +96,7 @@ while active:
                 right = right * 2 - 100
 
 	# Debugging
-	print "[L: " + str(left) + ", R: " + str(right) + "]"
+	#print "[L: " + str(left) + ", R: " + str(right) + "]"
 	item = {"l": str(left),"r": str(right)}
 	data.append(item)
 	if (left == 0):		
@@ -123,7 +123,7 @@ while active:
 		pwmB.ChangeDutyCycle(right * -1)
 		GPIO.output(Motor2A,GPIO.HIGH)
 		GPIO.output(Motor2B,GPIO.LOW)
-
+	console.log(ps3.axis)
 	buttonDelay += 1
 	if (ps3.select > 0):
 		active = False
