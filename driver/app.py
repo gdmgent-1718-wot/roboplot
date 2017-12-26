@@ -123,7 +123,6 @@ while active:
 		pwmB.ChangeDutyCycle(right * -1)
 		GPIO.output(Motor2A,GPIO.HIGH)
 		GPIO.output(Motor2B,GPIO.LOW)
-	console.log(ps3.axis)
 	buttonDelay += 1
 	if (ps3.select > 0):
 		active = False
