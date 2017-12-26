@@ -15,7 +15,7 @@ try:
 except NameError:
     to_unicode = str
 #interval for logging axis to json in seconds
-interval = 2
+interval = 0.5
 # data
 data = []
 #create data
@@ -138,9 +138,3 @@ while active:
 #with io.open('data.json', 'w', encoding='utf8') as outfile:
 #    str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
 #    outfile.write(to_unicode(str_))
-def myPeriodicFunction():
-    print("print")
-def startTimer():
-    threading.Timer(interval, startTimer).start()
-    myPeriodicFunction()
-startTimer()
