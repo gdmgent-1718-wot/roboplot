@@ -124,7 +124,7 @@ while active:
 		GPIO.output(Motor2A,GPIO.HIGH)
 		GPIO.output(Motor2B,GPIO.LOW)
 	buttonDelay += 1
-	console.log(ps3.select)
+	print ps3.select
 	if (ps3.a_cross > 0):
 		active = False
 	if (buttonDelay > 1500):
