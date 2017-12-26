@@ -47,16 +47,31 @@
         </ul>
       </div>
     </div>
+    <p for="data in data">smdl</p>
   </div>
 </template>
-
 <script>
+/* eslint-disable */
+import Firebase from 'firebase'
 export default {
   name: 'hello',
   data () {
     return {
-
     }
-  }
+  },
+  created () {
+    this.getlogs();
+  },
+  methods: {
+    getlogs: function () {
+      let config = {
+          databaseURL: "https://roboplot-1.firebaseio.com/"
+        };  
+      let app = Firebase.initializeApp(config)
+      let db = app.database()
+      let data = db.ref('data')
+      console.log(db)
+    }
+  },
 }
 </script>
