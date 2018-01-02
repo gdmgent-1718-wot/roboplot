@@ -7,8 +7,8 @@
           <li class="list-group-item textleft" v-for="records in records" v-bind:class="{ act: records.actief }">
             <span class="badge badge-primary badge-pill">{{ records.datum }}</span>
             <span class="left">{{ records.naam }}</span>
-            <a class="right actionbuttons" @click="toevoegen(records.naam)" v-show="!records.actief"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
-            <a class="right actionbuttons" @click="verwijderen(records.naam)" v-show="records.actief"><i class="fa fa-minus fa-2x" aria-hidden="true"></i></a>
+            <a class="right actionbuttons" @click="toevoegen(records)" v-show="!records.actief"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
+            <a class="right actionbuttons" @click="verwijderen(records)" v-show="records.actief"><i class="fa fa-minus fa-2x" aria-hidden="true"></i></a>
           </li>
         </ul>
         <nav aria-label="Page navigation example" v-if="records.length >= 5">
@@ -25,49 +25,77 @@
           </ul>
         </nav>
       </div>
-      <div class="card" v-show="actief">
+      <div class="card" v-show="actief.length > 0">
         <h1>Afspeellijst</h1>
          <ul class="list-group">
           <li class="list-group-item textleft act" v-for="actief in actief">
             <span class="badge badge-primary badge-pill right">{{ actief.datum }}</span>
             <span class="left">{{ actief.naam }}</span>
-            <a class="right actionbuttons white" @click="verwijderen(actief.naam)"><i class="fa fa-minus fa-2x" aria-hidden="true"></i></a>
+            <a class="right actionbuttons white" @click="verwijderen(actief)"><i class="fa fa-minus fa-2x" aria-hidden="true"></i></a>
           </li>
         </ul>
+      </div>
+      <div v-show="error" class="alert alert-danger" role="alert">
+        {{ error }}
       </div>
     </div>
   </div>
 </template>
 <script>
 /* eslint-disable */
-import * as firebase from "firebase";
+import initializeApp from 'firebase'
+const app = initializeApp.initializeApp({
+  apiKey: 'AIzaSyCQlYBkHTw5Q6N6A7_ygs6w8OkrKPE44uY',
+  authDomain: 'roboplot-1.firebaseapp.com',
+  databaseURL: 'https://roboplot-1.firebaseio.com',
+  projectId: 'roboplot-1',
+  storageBucket: 'roboplot-1.appspot.com',
+  messagingSenderId: '775004018292'
+})
+const db = app.database();
+const ref = db.ref('actief')
+const ref2 = db.ref('data')
 export default {
   name: 'hello',
   data () {
     return {
       records: [],
-      actief: null
+      actief: null,
+      vorigrecord: null,
+      error: null,
     }
   },
+  firebase: {
+    records: ref2,
+    actief: ref    
+  },
   created () {
-    this.getlogs();
   },
   methods: {
-    getlogs: function () {  
-      let self = this;
-      firebase.database().ref('data').on('value', function (logs) {
-        self.records = logs.val()
-      });
-      firebase.database().ref('actief').on('value', function (actief) {
-        self.actief = actief.val()
-      })
+    verwijderen: function(record){
+      this.error = null;
+      let naam = record['naam']
+      ref2.child(naam).update({ actief: false})   
+      ref.remove()
+      this.vorigrecord = null;
     },
-    verwijderen: function(naam){
-      
-    },
-    toevoegen: function(naam){
-      if(this.actief = null){
-      }
+    toevoegen: function(record){
+      this.error = null;
+      let naam = record['naam'];
+      if(this.actief.length == 0){
+        let datum = record['datum'];
+        let waarden = record['waarden'];
+        let rec = {
+          'datum': datum,
+          'naam': naam,
+          'waarden': waarden        
+        }
+        ref.push(rec);    
+        ref2.child(naam).update({ actief: true});
+        this.vorigrecord = naam;
+      }else{
+        this.error = "Je kan maar 1 record tegelijk in de afspeellijst plaatsen. Verwijder eerst " + this.vorigrecord + "."
+      }      
     }
   }
 }
