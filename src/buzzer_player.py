@@ -595,8 +595,6 @@ def setup():
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(buzzer_pin, GPIO.IN)
 	GPIO.setup(buzzer_pin, GPIO.OUT)
-  pwm = GPIO.PWM(voltage_pin,100)
-  pwmA.start(100)
 	
 def destroy():
 	GPIO.cleanup()				# Release resource
