@@ -58,84 +58,90 @@ print("SELECT: TOGGLE LIGHT ON/OFF")
 print("")
 print("To Close, press 'Ctrl + C'")
 
-# Start update cycle
-while True:
-	# Get PS3 update
-	ps3.update()
-	# Left joystick parsing of data
-	left_joystick_y = ps3.a_joystick_left_y
-	if (left_joystick_y != 0):
-		left_joystick_y = left_joystick_y * -1
-	if (left_joystick_y < 0):
-		left_joystick_y = math.floor(left_joystick_y * 100) / 100
-	elif (left_joystick_y > 0):
-		left_joystick_y = math.ceil(left_joystick_y * 100) / 100
+try:
+	# Start update cycle
+	while True:
+		# Get PS3 update
+		ps3.update()
+		# Left joystick parsing of data
+		left_joystick_y = ps3.a_joystick_left_y
+		if (left_joystick_y != 0):
+			left_joystick_y = left_joystick_y * -1
+		if (left_joystick_y < 0):
+			left_joystick_y = math.floor(left_joystick_y * 100) / 100
+		elif (left_joystick_y > 0):
+			left_joystick_y = math.ceil(left_joystick_y * 100) / 100
 
-	left = ((left_joystick_y + 1) / 2) * 100
+		left = ((left_joystick_y + 1) / 2) * 100
 
-	if (left < 0):
-		left = 0
-	if (left == 50):
-		left = 0
-	else:
-		left = left * 2 - 100
-	
-	# Right joystick parsing of data
-	right_joystick_y = ps3.a_joystick_right_y
-	if (right_joystick_y != 0):
-		right_joystick_y = right_joystick_y * -1 
-	if (right_joystick_y < 0):
-		right_joystick_y = math.floor(right_joystick_y * 100) / 100
-	elif (right_joystick_y > 0):
-		right_joystick_y = math.ceil(right_joystick_y * 100) / 100
+		if (left < 0):
+			left = 0
+		if (left == 50):
+			left = 0
+		else:
+			left = left * 2 - 100
+		
+		# Right joystick parsing of data
+		right_joystick_y = ps3.a_joystick_right_y
+		if (right_joystick_y != 0):
+			right_joystick_y = right_joystick_y * -1 
+		if (right_joystick_y < 0):
+			right_joystick_y = math.floor(right_joystick_y * 100) / 100
+		elif (right_joystick_y > 0):
+			right_joystick_y = math.ceil(right_joystick_y * 100) / 100
 
-	right = ((right_joystick_y + 1) / 2) * 100
+		right = ((right_joystick_y + 1) / 2) * 100
 
-	if (right < 0):
-		right = 0
-	if (right == 50):
-		right = 0
-	else:
-		right = right * 2 - 100
+		if (right < 0):
+			right = 0
+		if (right == 50):
+			right = 0
+		else:
+			right = right * 2 - 100
 
-	# Debugging
-	#print "[L: " + str(left) + ", R: " + str(right) + "]"
-	item = {"l": str(left),"r": str(right)}
-	data.append(item)
+		# Debugging
+		#print "[L: " + str(left) + ", R: " + str(right) + "]"
+		item = {"l": str(left),"r": str(right)}
+		data.append(item)
 
-	if (left == 0):		
-		pwmA.stop()
-	elif (left > 0):
-		pwmA.start(0)
-		pwmA.ChangeDutyCycle(left)
-		GPIO.output(Motor1A,GPIO.LOW)
-		GPIO.output(Motor1B,GPIO.HIGH)
-	elif (left < 0):
-		pwmA.start(0)
-		pwmA.ChangeDutyCycle(left * -1)
-		GPIO.output(Motor1A,GPIO.HIGH)
-		GPIO.output(Motor1B,GPIO.LOW)
+		if (left == 0):		
+			pwmA.stop()
+		elif (left > 0):
+			pwmA.start(0)
+			pwmA.ChangeDutyCycle(left)
+			GPIO.output(Motor1A,GPIO.LOW)
+			GPIO.output(Motor1B,GPIO.HIGH)
+		elif (left < 0):
+			pwmA.start(0)
+			pwmA.ChangeDutyCycle(left * -1)
+			GPIO.output(Motor1A,GPIO.HIGH)
+			GPIO.output(Motor1B,GPIO.LOW)
 
-	if (right == 0):
-		pwmB.stop()
-	elif (right > 0):
-		pwmB.start(0)
-		pwmB.ChangeDutyCycle(right)
-		GPIO.output(Motor2A,GPIO.LOW)
-		GPIO.output(Motor2B,GPIO.HIGH)
-	elif (right < 0):
-		pwmB.start(0)
-		pwmB.ChangeDutyCycle(right * -1)
-		GPIO.output(Motor2A,GPIO.HIGH)
-		GPIO.output(Motor2B,GPIO.LOW)
+		if (right == 0):
+			pwmB.stop()
+		elif (right > 0):
+			pwmB.start(0)
+			pwmB.ChangeDutyCycle(right)
+			GPIO.output(Motor2A,GPIO.LOW)
+			GPIO.output(Motor2B,GPIO.HIGH)
+		elif (right < 0):
+			pwmB.start(0)
+			pwmB.ChangeDutyCycle(right * -1)
+			GPIO.output(Motor2A,GPIO.HIGH)
+			GPIO.output(Motor2B,GPIO.LOW)
 
-	buttonDelay += 1
+		buttonDelay += 1
 
-	if (buttonDelay > 1500):
-		if (ps3.a_cross > 0):
-			buttonDelay = 0
-			GPIO.output(lamp1, not GPIO.input(lamp1))
+		if (buttonDelay > 1500):
+			if (ps3.a_cross > 0):
+				buttonDelay = 0
+				GPIO.output(lamp1, not GPIO.input(lamp1))
 
-with io.open('data.json', 'w', encoding='utf8') as outfile:
-	str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
-	outfile.write(to_unicode(str_))
+	with io.open('data.json', 'w', encoding='utf8') as outfile:
+		str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
+		outfile.write(to_unicode(str_))
+
+except KeyboardInterrupt:
+  pwmA.stop()
+	pwmB.stop()
+  GPIO.cleanup()
