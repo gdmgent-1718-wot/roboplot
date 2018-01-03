@@ -124,7 +124,7 @@ try:
 			GPIO.output(Motor2A,GPIO.HIGH)
 			GPIO.output(Motor2B,GPIO.LOW)
 		buttonDelay += 1
-		if (ps3.select = True):
+		if (ps3.select):
 			active = False
 		if (buttonDelay > 1500):
 			if (ps3.a_cross > 0):
@@ -133,4 +133,5 @@ try:
 	with io.open('data.json', 'w', encoding='utf8') as outfile:
 			str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
 			outfile.write(to_unicode(str_))
+
 
