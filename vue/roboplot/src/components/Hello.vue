@@ -7,31 +7,19 @@
           <li class="list-group-item textleft" v-for="records in records" v-bind:class="{ act: records.actief }">
             <span class="badge badge-primary badge-pill">{{ records.datum }}</span>
             <span class="left">{{ records.naam }}</span>
+            <a class="right actionbuttons" @click="permanent(records['.key'])"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
             <a class="right actionbuttons" @click="toevoegen(records)" v-show="!records.actief"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
-            <a class="right actionbuttons" @click="verwijderen(records)" v-show="records.actief"><i class="fa fa-minus fa-2x" aria-hidden="true"></i></a>
+            <a class="right actionbuttons" @click="verwijderen(records['.key'])" v-show="records.actief"><i class="fa fa-minus fa-2x" aria-hidden="true"></i></a>
           </li>
         </ul>
-        <nav aria-label="Page navigation example" v-if="records.length >= 5">
-          <ul class="pagination justify-content-end">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1">Vorige</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Volgende</a>
-            </li>
-          </ul>
-        </nav>
       </div>
-      <div class="card" v-show="actief.length > 0">
+      <div class="card" v-if="actief.length > 0">
         <h1>Afspeellijst</h1>
          <ul class="list-group">
-          <li class="list-group-item textleft act" v-for="actief in actief">
-            <span class="badge badge-primary badge-pill right">{{ actief.datum }}</span>
-            <span class="left">{{ actief.naam }}</span>
-            <a class="right actionbuttons white" @click="verwijderen(actief)"><i class="fa fa-minus fa-2x" aria-hidden="true"></i></a>
+          <li class="list-group-item textleft act">
+            <span class="badge badge-primary badge-pill right">{{ actief[0]['.value'] }}</span>
+            <span class="left">{{ actief[2]['.value'] }}</span>
+            <a class="right actionbuttons white" @click="verwijderen(actief[1]['.value'])"><i class="fa fa-minus fa-2x" aria-hidden="true"></i></a>
           </li>
         </ul>
       </div>
@@ -73,13 +61,20 @@ export default {
   },
   methods: {
     verwijderen: function(record){
+      let key = record;
+      let naam = null;
+      if (record.length > 1){
+        naam = record;
+      }else{
+        naam = record['naam']
+      }      
       this.error = null;
-      let naam = record['naam']
-      ref2.child(naam).update({ actief: false})   
+      ref2.child(key).update({ actief: false})   
       ref.remove()
-      this.vorigrecord = null;
     },
     toevoegen: function(record){
+      let key = record['.key'];
+      this.click = key;
       this.error = null;
       let naam = record['naam'];
       if(this.actief.length == 0){
@@ -88,14 +83,18 @@ export default {
         let rec = {
           'datum': datum,
           'naam': naam,
-          'waarden': waarden        
+          'waarden': waarden,
+          'key': key        
         }
-        ref.push(rec);    
-        ref2.child(naam).update({ actief: true});
+        ref.set(rec);    
+        ref2.child(key).update({ actief: true});
         this.vorigrecord = naam;
       }else{
         this.error = "Je kan maar 1 record tegelijk in de afspeellijst plaatsen. Verwijder eerst " + this.vorigrecord + "."
       }      
+    },
+    permanent: function(record){
+      console.log(record)
     }
   }
 }
