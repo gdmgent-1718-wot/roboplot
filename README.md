@@ -160,6 +160,8 @@ while True:
     sleep(0.1)
 ```
 
+## Technische Tekening
+
 ![Robotplot Connections](https://github.com/gdmgent-1718-wot/roboplot/blob/master/docs/Roboplot_Schema.png)
 
 
