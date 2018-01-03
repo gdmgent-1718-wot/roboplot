@@ -142,6 +142,4 @@ try:
 		outfile.write(to_unicode(str_))
 
 except KeyboardInterrupt:
-  pwmA.stop()
-	pwmB.stop()
   GPIO.cleanup()
