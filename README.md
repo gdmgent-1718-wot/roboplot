@@ -160,6 +160,7 @@ while True:
     sleep(0.1)
 ```
 
+[technical drawing]: https://github.com/gdmgent-1718-wot/roboplot/blob/master/docs/Roboplot_Schema.png "Technical Drawing"
 
 
 
