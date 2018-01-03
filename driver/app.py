@@ -71,7 +71,9 @@ try:
 			left_joystick_y = math.floor(left_joystick_y * 100) / 100
 		elif (left_joystick_y > 0):
 			left_joystick_y = math.ceil(left_joystick_y * 100) / 100
-			left = ((left_joystick_y + 1) / 2) * 100
+
+		left = ((left_joystick_y + 1) / 2) * 100
+		
 		if (left < 0):
 			left = 0
 		if (left == 50):
@@ -87,7 +89,9 @@ try:
 			right_joystick_y = math.floor(right_joystick_y * 100) / 100
 		elif (right_joystick_y > 0):
 			right_joystick_y = math.ceil(right_joystick_y * 100) / 100
-			right = ((right_joystick_y + 1) / 2) * 100
+
+		right = ((right_joystick_y + 1) / 2) * 100
+
 		if (right < 0):
 			right = 0
 		if (right == 50):
@@ -99,6 +103,7 @@ try:
 		#print "[L: " + str(left) + ", R: " + str(right) + "]"
 		item = {"l": str(left),"r": str(right)}
 		data.append(item)
+
 		if (left == 0):		
 			pwmA.stop()
 		elif (left > 0):
@@ -126,8 +131,7 @@ try:
 			GPIO.output(Motor2B,GPIO.LOW)
 
 		buttonDelay += 1
-		if (ps3.select):
-			active = False
+
 		if (buttonDelay > 1500):
 			if (ps3.a_cross > 0):
 				buttonDelay = 0
