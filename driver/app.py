@@ -73,7 +73,7 @@ try:
 			left_joystick_y = math.ceil(left_joystick_y * 100) / 100
 
 		left = ((left_joystick_y + 1) / 2) * 100
-		
+
 		if (left < 0):
 			left = 0
 		if (left == 50):
@@ -137,6 +137,6 @@ try:
 				buttonDelay = 0
 				GPIO.output(lamp1, not GPIO.input(lamp1))
 
-	#with io.open('data.json', 'w', encoding='utf8') as outfile:
-	#		str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
-	#		outfile.write(to_unicode(str_))
+with io.open('data.json', 'w', encoding='utf8') as outfile:
+	str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
+	outfile.write(to_unicode(str_))
