@@ -71,29 +71,29 @@ try:
 			left_joystick_y = math.floor(left_joystick_y * 100) / 100
 		elif (left_joystick_y > 0):
 			left_joystick_y = math.ceil(left_joystick_y * 100) / 100
-		left = ((left_joystick_y + 1) / 2) * 100
+			left = ((left_joystick_y + 1) / 2) * 100
 		if (left < 0):
-									left = 0
+			left = 0
 		if (left == 50):
 			left = 0
 		else:
 			left = left * 2 - 100
 		
 		# Right joystick parsing of data
-					right_joystick_y = ps3.a_joystick_right_y
-					if (right_joystick_y != 0):
-									right_joystick_y = right_joystick_y * -1 
-					if (right_joystick_y < 0):
-									right_joystick_y = math.floor(right_joystick_y * 100) / 100
-					elif (right_joystick_y > 0):
-									right_joystick_y = math.ceil(right_joystick_y * 100) / 100
-		right = ((right_joystick_y + 1) / 2) * 100
+		right_joystick_y = ps3.a_joystick_right_y
+		if (right_joystick_y != 0):
+			right_joystick_y = right_joystick_y * -1 
+		if (right_joystick_y < 0):
+			right_joystick_y = math.floor(right_joystick_y * 100) / 100
+		elif (right_joystick_y > 0):
+			right_joystick_y = math.ceil(right_joystick_y * 100) / 100
+			right = ((right_joystick_y + 1) / 2) * 100
 		if (right < 0):
 			right = 0
-					if (right == 50):
-									right = 0
-					else:
-									right = right * 2 - 100
+		if (right == 50):
+			right = 0
+		else:
+			right = right * 2 - 100
 
 		# Debugging
 		#print "[L: " + str(left) + ", R: " + str(right) + "]"
@@ -124,7 +124,7 @@ try:
 			pwmB.ChangeDutyCycle(right * -1)
 			GPIO.output(Motor2A,GPIO.HIGH)
 			GPIO.output(Motor2B,GPIO.LOW)
-			
+
 		buttonDelay += 1
 		if (ps3.select):
 			active = False
