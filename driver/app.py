@@ -111,18 +111,20 @@ try:
 			pwmA.ChangeDutyCycle(left * -1)
 			GPIO.output(Motor1A,GPIO.HIGH)
 			GPIO.output(Motor1B,GPIO.LOW)
-					if (right == 0):
-									pwmB.stop()
-					elif (right > 0):
+
+		if (right == 0):
+			pwmB.stop()
+		elif (right > 0):
 			pwmB.start(0)
 			pwmB.ChangeDutyCycle(right)
 			GPIO.output(Motor2A,GPIO.LOW)
 			GPIO.output(Motor2B,GPIO.HIGH)
-					elif (right < 0):
+		elif (right < 0):
 			pwmB.start(0)
 			pwmB.ChangeDutyCycle(right * -1)
 			GPIO.output(Motor2A,GPIO.HIGH)
 			GPIO.output(Motor2B,GPIO.LOW)
+			
 		buttonDelay += 1
 		if (ps3.select):
 			active = False
