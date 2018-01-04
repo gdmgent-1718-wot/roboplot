@@ -18,7 +18,9 @@
     "jquery": "^3.2.1",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
+    "sweet-modal-vue": "^2.0.0",
     "vue": "^2.5.2",
+    "vue-js-modal": "^1.3.7",
     "vuefire": "^1.4.5"
   },
   "devDependencies": {

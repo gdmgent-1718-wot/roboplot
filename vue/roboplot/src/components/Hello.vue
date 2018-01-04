@@ -7,7 +7,7 @@
           <li class="list-group-item textleft" v-for="records in records" v-bind:class="{ act: records.actief }">
             <span class="badge badge-primary badge-pill">{{ records.datum }}</span>
             <span class="left">{{ records.naam }}</span>
-            <a class="right actionbuttons" @click="permanent(records['.key'])"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+            <a class="right actionbuttons" @click="toggle(records)" v-show="!records.actief"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
             <a class="right actionbuttons" @click="toevoegen(records)" v-show="!records.actief"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
             <a class="right actionbuttons" @click="verwijderen(records['.key'])" v-show="records.actief"><i class="fa fa-minus fa-2x" aria-hidden="true"></i></a>
           </li>
@@ -26,6 +26,11 @@
       <div v-show="error" class="alert alert-danger" role="alert">
         {{ error }}
       </div>
+      <sweet-modal ref="modal" icon="error" hide-close-button blocking overlay-theme="dark" modal-theme="dark">
+        <p>Weet je zeker dat je <strong v-show="deleterec.naam">{{ deleterec.naam }}</strong> wilt verwijderen?</p>
+        <button type="button" class="btn btn-outline-danger verwijderen" v-on:click="permanent()">Verwijderen</button>
+        <button type="button" class="btn btn-outline-secondary annuleer" v-on:click="toggle()">Annuleren</button>
+      </sweet-modal>
     </div>
   </div>
 </template>
@@ -51,6 +56,11 @@ export default {
       actief: null,
       vorigrecord: null,
       error: null,
+      modal: false,
+      deleterec: {
+        key: null,
+        naam: null
+      }
     }
   },
   firebase: {
@@ -93,8 +103,26 @@ export default {
         this.error = "Je kan maar 1 record tegelijk in de afspeellijst plaatsen. Verwijder eerst " + this.vorigrecord + "."
       }      
     },
-    permanent: function(record){
-      console.log(record)
+    toggle: function(record){
+      this.error = null;
+      if(this.modal == false){
+        this.deleterec.key = record['.key'];
+        this.deleterec.naam = record['naam'];
+        this.$refs.modal.open();
+        this.modal = true
+      }else{
+        this.deleterec.key = null;
+        this.deleterec.naam = null;
+        this.$refs.modal.close()
+        this.modal = false
+      }
+    },
+    permanent: function(){
+      ref2.child(this.deleterec.key).remove()
+      this.$refs.modal.close()
+      this.modal = false
+      this.deleterec.key = null;
+      this.deleterec.naam = null;
     }
   }
 }

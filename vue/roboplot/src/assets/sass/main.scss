@@ -1,3 +1,9 @@
+$rood: #F44336;
+$lichtblauw: #17a2b8;
+$wit: white;
+$grijs: #484848;
+$blauw: #1E88E5;
+$paars: #2c3e50;
 .main{
     .left{
         text-align: left;
@@ -12,17 +18,23 @@
         text-align: left;
     }
     .act{
-        background-color: #17a2b8!important;
-        color: white!important;
+        background-color: $lichtblauw!important;
+        color: $wit!important;
         a{
-            color: white;
+            color: $wit;
         }
+    }
+    .verwijderen{
+        background-color: $rood;
+    }
+    .annuleer{
+        background-color: $blauw;
     }    
     .white{
-        color: white;
+        color: $wit;
     }
     .badge{
-        background-color: #484848!important
+        background-color: $grijs!important
     }
 }
 .title{
@@ -36,7 +48,7 @@ body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: $paars;
 }
 
 main {
@@ -49,7 +61,7 @@ header {
   height: 56px;
   padding: 0 16px 0 24px;
   background-color: #35495E;
-  color: #ffffff;
+  color: $wit;
 }
 
 header span {
