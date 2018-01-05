@@ -1,4 +1,3 @@
-import pyrebase
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
@@ -24,7 +23,7 @@ waarden = {
 }
 
 #credentials voor firebase
-cred = credentials.Certificate('./lib/key.json')
+cred = credentials.Certificate('../../driver/lib/key.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL' : 'https://roboplot-1.firebaseio.com/'
 })
