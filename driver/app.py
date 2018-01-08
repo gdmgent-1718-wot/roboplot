@@ -14,7 +14,7 @@ except NameError:
     to_unicode = str
 # data
 data = []
-Active = 
+active = True
 #create data
 x = 1
 # PS3 Controller setup
@@ -61,7 +61,7 @@ print("To Close, press 'Ctrl + C'")
 
 try:
 	# Start update cycle
-	while True:
+	while active:
 		# Get PS3 update
 		ps3.update()
 		# Left joystick parsing of data
@@ -130,6 +130,10 @@ try:
 			pwmB.ChangeDutyCycle(right * -1)
 			GPIO.output(Motor2A,GPIO.HIGH)
 			GPIO.output(Motor2B,GPIO.LOW)
+
+		if (ps3.a_square > 0):
+			active = False
+			GPIO.cleanup()
 
 		buttonDelay += 1
 
