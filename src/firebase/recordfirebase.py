@@ -62,17 +62,20 @@ while record:
         
     if (left_joystick_y < 0):
 	    left_joystick_y = (math.floor(left_joystick_y * 100)/ 100
-        
+
     if (left_joystick_y > 0):
-	    left_joystick_y = (math.ceil(left_joystick_y * 100) / 100
+        left_joystick_y = (math.ceil(left_joystick_y * 100) / 100
 
     left = ((left_joystick_y + 1) / 2) * 100
+
     if (left < 0):
         left = 0
+
     if (left == 50):
-	left = 0
+	    left = 0
     else:
         left = left * 2 - 100
+
     # Right joystick parsing of data
     right_joystick_y = ps3.a_joystick_right_y
     if (right_joystick_y != 0):
