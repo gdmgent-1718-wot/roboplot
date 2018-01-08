@@ -62,6 +62,8 @@ while record:
         left_joystick_y = (math.floor(left_joystick_y * 100)/ 100
     elif lef_joystick_y > 0:
         left_joystick_y = (math.ceil(left_joystick_y * 100) / 100
+    else:
+        # nothing
 
     left = ((left_joystick_y + 1) / 2) * 100
 
