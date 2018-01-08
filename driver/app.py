@@ -141,9 +141,7 @@ try:
 			if (ps3.a_cross > 0):
 				buttonDelay = 0
 				GPIO.output(lamp1, not GPIO.input(lamp1))
-
-	  sleep(.0005)
-
+				
 	with io.open('data.json', 'w', encoding='utf8') as outfile:
 		str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
 		outfile.write(to_unicode(str_))
