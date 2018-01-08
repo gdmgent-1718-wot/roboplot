@@ -57,12 +57,12 @@ while record:
     ps3.update()
     # Left joystick parsing of data
     left_joystick_y = ps3.a_joystick_left_y
-    if left_joystick_y != 0:
+    if (left_joystick_y != 0):
         left_joystick_y = left_joystick_y * -1
-
-    if left_joystick_y < 0:
+        
+    if (left_joystick_y < 0):
 	    left_joystick_y = (math.floor(left_joystick_y * 100)/ 100
-    elif left_joystick_y > 0:
+    elif (left_joystick_y > 0):
 	    left_joystick_y = (math.ceil(left_joystick_y * 100) / 100
 
     left = ((left_joystick_y + 1) / 2) * 100
