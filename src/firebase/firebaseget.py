@@ -10,6 +10,7 @@ firebase_admin.initialize_app(cred, {
 records = db.reference('actief').get()
 if records:
     array = records['waarden']
-    print (array[1].l)
+    for coord in array:
+        print('links : ' + coord['l'][0:7] + '   rechts : ' + coord['r'][0:7] )
 else:
     print('geen records in afspeellijst')
