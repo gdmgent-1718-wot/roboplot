@@ -10,7 +10,6 @@ firebase_admin.initialize_app(cred, {
 records = db.reference('actief').get()
 if records:
     array = records['waarden']
-    for x in (0, len(array)):
-        print (array[x].l + ' ' + array[x].r)
+    print (len(array))
 else:
     print('geen records in afspeellijst')
