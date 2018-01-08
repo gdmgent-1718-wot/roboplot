@@ -47,7 +47,7 @@ def exit():
         if data:
             #write
             rec['waarden'] = data
-            newrecord = write.push(rec)     
+            newrecord = write.push(rec)
     except Exception:
         print('Het record met de naam %s bestaat al.'%naam)
     print('afgesloten')
@@ -61,7 +61,7 @@ while record:
         left_joystick_y = left_joystick_y * -1
         
     if (left_joystick_y < 0):
-	    left_joystick_y = (math.floor(left_joystick_y * 100)/ 100
+        left_joystick_y = (math.floor(left_joystick_y * 100)/ 100
 
     if (left_joystick_y > 0):
         left_joystick_y = (math.ceil(left_joystick_y * 100) / 100
@@ -72,7 +72,7 @@ while record:
         left = 0
 
     if (left == 50):
-	    left = 0
+        left = 0
     else:
         left = left * 2 - 100
 
