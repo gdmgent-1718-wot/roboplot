@@ -60,9 +60,9 @@ while record:
     if (left_joystick_y != 0):
         left_joystick_y = left_joystick_y * -1
     if (left_joystick_y < 0):
-	left_joystick_y = math.floor(left_joystick_y * 100) / 100
+	left_joystick_y = (math.floor(left_joystick_y * 100) / 100)
     elif (left_joystick_y > 0):
-	left_joystick_y = math.ceil(left_joystick_y * 100) / 100
+	left_joystick_y = (math.ceil(left_joystick_y * 100) / 100)
     left = ((left_joystick_y + 1) / 2) * 100
     if (left < 0):
         left = 0
