@@ -65,30 +65,31 @@ print("")
 print("To Close, press 'Ctrl + C'")
 
 def setMotor(l, r):
-	print(str(l) + '' + str(r))
-	if (l == 0):		
+	leftMotor = float(l)
+	rightMotor = float(r)
+	if (leftMotor == 0):		
 		pwmA.stop()
-	elif (l > 0):
+	elif (leftMotor > 0):
 		pwmA.start(0)
-		pwmA.ChangeDutyCycle(l)
+		pwmA.ChangeDutyCycle(leftMotor)
 		GPIO.output(Motor1A,GPIO.LOW)
 		GPIO.output(Motor1B,GPIO.HIGH)
-	elif (l < 0):
+	elif (leftMotor < 0):
 		pwmA.start(0)
-		pwmA.ChangeDutyCycle(l * -1)
+		pwmA.ChangeDutyCycle(leftMotor * -1)
 		GPIO.output(Motor1A,GPIO.HIGH)
 		GPIO.output(Motor1B,GPIO.LOW)
 
-	if (r == 0):
+	if (rightMotor == 0):
 		pwmB.stop()
-	elif (r > 0):
+	elif (rightMotor > 0):
 		pwmB.start(0)
-		pwmB.ChangeDutyCycle(r)
+		pwmB.ChangeDutyCycle(rightMotor)
 		GPIO.output(Motor2A,GPIO.LOW)
 		GPIO.output(Motor2B,GPIO.HIGH)
-	elif (r < 0):
+	elif (rightMotor < 0):
 		pwmB.start(0)
-		pwmB.ChangeDutyCycle(r * -1)
+		pwmB.ChangeDutyCycle(rightMotor * -1)
 		GPIO.output(Motor2A,GPIO.HIGH)
 		GPIO.output(Motor2B,GPIO.LOW)
 
