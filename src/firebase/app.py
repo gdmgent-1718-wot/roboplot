@@ -201,19 +201,18 @@ try:
 
 		#start met recorden
 		if (ps3.r1):
-				toggle = True
-				print('Start opname')
+			toggle = True
+			print('Start opname')
 		#Stop met recorden
 		if (ps3.r2):
-				if toggle==True:
-						if data:
-								#write
-										rec['waarden'] = data
-										newrecord = write.push(rec)
-										data = []
-										rec['naam'] = names.get_first_name(gender='female')
-				toggle = False
-				print('Stop opname')
+			if toggle==True:
+				if data:
+					#write
+					rec['waarden'] = data
+					newrecord = write.push(rec)
+					data = []						rec['naam'] = names.get_first_name(gender='female')
+			toggle = False
+			print('Stop opname')
 		counter += 1
 
 except KeyboardInterrupt:
