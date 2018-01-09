@@ -30,7 +30,7 @@ naam = names.get_first_name(gender='female')
 actief = False
 
 #load Firebase credentials
-cred = credentials.Certificate('../../src/lib/key.json')
+cred = credentials.Certificate('./lib/key.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL' : 'https://roboplot-1.firebaseio.com/'
 })
