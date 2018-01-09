@@ -102,7 +102,9 @@ while record:
             if data:
                 #write
                     rec['waarden'] = data
-                    newrecord = write.push(rec)        
+                    newrecord = write.push(rec)
+                    data = []
+                    rec['naam'] = names.get_first_name(gender='female')
         toggle = False
         print('Stop opname')
     counter += 1
