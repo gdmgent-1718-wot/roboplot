@@ -22,6 +22,7 @@ counter = 0
 toggle = False
 data = []
 active = True
+buttonTriangleDelay = 0
 
 #waarden voor weg te schrijven
 datum = now.strftime("%d-%m-%Y %H:%M")
@@ -65,6 +66,9 @@ GPIO.setup(Motor2A,GPIO.OUT)
 GPIO.setup(Motor2B,GPIO.OUT)
 GPIO.setup(Motor2E,GPIO.OUT)
 
+pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-25 for PWM
+pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
+
 #lampen
 lamp1 =  5
 GPIO.setup(lamp1, GPIO.OUT)
@@ -75,14 +79,6 @@ buzzerE = 3
 GPIO.setup(buzzerP, GPIO.OUT)
 GPIO.setup(buzzerE, GPIO.OUT)
 GPIO.output(buzzerP, GPIO.HIGH)
-
-
-
-pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-25 for PWM
-pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
-
-buttonCrossDelay = 0
-buttonTriangleDelay = 0
 
 #assign
 rec = {
@@ -106,6 +102,13 @@ print("CROSS:    TOGGLE LIGHT ON/OFF")
 print("")
 print("")
 print("To Close, press 'Ctrl + C' of push SQUARE")
+
+GPIO.output(lamp1, GPIO.HIGH)
+GPIO.output(buzzerE, GPIO.HIGH)
+time.sleep(1)
+GPIO.output(lamp1, GPIO.LOW)
+GPIO.output(buzzerE, GPIO.LOW)
+
 
 def setMotor(l, r):
 	leftMotor = float(l)
@@ -183,15 +186,11 @@ try:
 
 		if (ps3.a_square > 0):
 			active = False
+			GPIO.output(lamp1, GPIO.HIGH)
+			GPIO.output(buzzerE, GPIO.HIGH)
+			time.sleep(2)
 			GPIO.cleanup()
 
-		buttonCrossDelay += 1
-
-		if (buttonCrossDelay > 1500):
-			if (ps3.a_cross > 0):
-				buttonCrossDelay = 0
-				GPIO.output(lamp1, not GPIO.input(lamp1))
-		
 		buttonTriangleDelay += 1
 		if (buttonTriangleDelay > 1500):
 			if (ps3.a_triangle > 0):
@@ -240,4 +239,7 @@ try:
 		counter += 1
 
 except KeyboardInterrupt:
+	GPIO.output(lamp1, GPIO.HIGH)
+	GPIO.output(buzzerE, GPIO.HIGH)
+	time.sleep(2)
 	GPIO.cleanup()
