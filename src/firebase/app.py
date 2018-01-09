@@ -159,7 +159,7 @@ try:
 						fbLeft = float(coord['l'][0:7])
 						fbRight = float(coord['r'][0:7])
 						setMotor(fbLeft, fbRight)
-						time.sleep(1)
+						time.sleep(0.04)
 						print('links : ' + coord['l'][0:7] + '   rechts : ' + coord['r'][0:7] )
 				else:
 					print('geen records in afspeellijst')
