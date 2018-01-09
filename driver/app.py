@@ -1,19 +1,23 @@
 #!/usr/bin/env python
 
 # Imports
-#import math, time, explorerhat
+#import depencies
 import math, time
 import RPi.GPIO as GPIO
 from lib import PS3 
 import json
 import io
-#write to json
-try:
-    to_unicode = unicode
-except NameError:
-    to_unicode = str
-# data
-data = []
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+
+#load Firebase credentials
+cred = credentials.Certificate('../../driver/lib/key.json')
+firebase_admin.initialize_app(cred, {
+    'databaseURL' : 'https://roboplot-1.firebaseio.com/'
+})
+records = db.reference('actief').get()
+
 active = True
 #create data
 x = 1
@@ -48,7 +52,8 @@ pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-25 for PWM
 pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 
 
-buttonDelay = 0
+buttonCrossDelay = 0
+buttonTriangleDelay = 0
 
 #Print Controls to user
 print("")
@@ -103,7 +108,6 @@ try:
 		# Debugging
 		#print "[L: " + str(left) + ", R: " + str(right) + "]"
 		item = {"l": str(left),"r": str(right)}
-		data.append(item)
 
 		if (left == 0):		
 			pwmA.stop()
@@ -135,16 +139,24 @@ try:
 			active = False
 			GPIO.cleanup()
 
-		buttonDelay += 1
+		buttonCrossDelay += 1
 
-		if (buttonDelay > 1500):
+		if (buttonCrossDelay > 1500):
 			if (ps3.a_cross > 0):
-				buttonDelay = 0
+				buttonCrossDelay = 0
 				GPIO.output(lamp1, not GPIO.input(lamp1))
-				
-	with io.open('data.json', 'w', encoding='utf8') as outfile:
-		str_ = json.dumps(data,indent=4, sort_keys=True,separators=(',', ': '), ensure_ascii=False)
-		outfile.write(to_unicode(str_))
+		
+		buttonTriangleDelay += 1
+		if (buttonTriangleDelay > 1500):
+			if (ps3.a_triangle > 0):
+				if records:
+    			array = records['waarden']
+    			for coord in array:
+        	print('links : ' + coord['l'][0:7] + '   rechts : ' + coord['r'][0:7] )
+				else:
+    			print('geen records in afspeellijst')
+
+				buttonTriangleDelay = 0
 
 except KeyboardInterrupt:
   GPIO.cleanup()
