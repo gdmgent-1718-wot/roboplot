@@ -1,3 +1,32 @@
+LAUNCH
+==================================
+
+## Info
+
+- Contributors: **Lode Muylaert & Jef Roosens**
+- Opleidingsonderdeel: **Web Of Things**
+- Academiejaar: **2017-2018**
+- Opleiding: **Bachelor in de grafische en digitale media**
+- Afstudeerrichting: **Multimediaproductie**
+- Keuzeoptie: **New Media Development**
+- Opleidingsinstelling: **Arteveldehogeschool**
+
+## Deploy
+
+### Clone
+
+```
+$ cd ~/Code/
+```
+
+```
+$ git clone https://github.com/gdmgent-1718-wot/roboplot.git
+```
+
+### Install
+
+
+
 # RoboPlot
 Pi Robotcar with Ps3-controller  | New Media Development | Graphic and Digital Media | Artevelde University College Ghent
 
