@@ -23,7 +23,7 @@ now = datetime.datetime.now()
 #waarden voor weg te schrijven
 datum = now.strftime("%d-%m-%Y %H:%M")
 naam = names.get_first_name(gender='female')
-
+actief = False
 #load Firebase credentials
 cred = credentials.Certificate('../../driver/lib/key.json')
 firebase_admin.initialize_app(cred, {
