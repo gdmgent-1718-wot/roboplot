@@ -25,7 +25,7 @@ ROBOPLOT
 - Raspberry Pi 3
 - Active 5v buzzer
 
-### Technische Tekening
+## Technische Tekening
 
 ![Robotplot Connections](https://github.com/gdmgent-1718-wot/roboplot/blob/master/docs/Roboplot_Schema.png)
 
