@@ -65,7 +65,7 @@ print("")
 print("To Close, press 'Ctrl + C'")
 
 def setMotor(l, r):
-	print(l + '' + r)
+	print(str(l) + '' + str(r))
 	if (l == 0):		
 		pwmA.stop()
 	elif (l > 0):
