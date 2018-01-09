@@ -152,7 +152,7 @@ try:
 				if records:
 					array = records['waarden']
 					for coord in array:
-					print('links : ' + coord['l'][0:7] + '   rechts : ' + coord['r'][0:7] )
+						print('links : ' + coord['l'][0:7] + '   rechts : ' + coord['r'][0:7] )
 				else:
 					print('geen records in afspeellijst')
 
