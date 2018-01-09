@@ -103,9 +103,8 @@ while record:
         write = True
         print('Stop opname')
     if write==True:
-        try:
-            if data:
-                #write
+        if data:
+            #write
                 rec['waarden'] = data
                 newrecord = write.push(rec)
     write == False
