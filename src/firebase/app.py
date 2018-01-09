@@ -149,6 +149,7 @@ try:
 		buttonTriangleDelay += 1
 		if (buttonTriangleDelay > 1500):
 			if (ps3.a_triangle > 0):
+				records = db.reference('actief').get()
 				if records:
 					array = records['waarden']
 					for coord in array:
