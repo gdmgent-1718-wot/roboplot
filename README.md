@@ -100,3 +100,13 @@ $ jstest /dev/input/js0
 ```
 
 This script delivers all value's of the buttons. You will see changes when you press a button
+
+## Execute
+
+```
+$ cd roboplot/src
+```
+
+```
+$ python3 app.py
+```
