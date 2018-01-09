@@ -105,35 +105,36 @@ try:
 		else:
 			right = right * 2 - 100
 
+		setMotor(left, right)
 		# Debugging
 		#print "[L: " + str(left) + ", R: " + str(right) + "]"
-		item = {"l": str(left),"r": str(right)}
 
-		if (left == 0):		
-			pwmA.stop()
-		elif (left > 0):
-			pwmA.start(0)
-			pwmA.ChangeDutyCycle(left)
-			GPIO.output(Motor1A,GPIO.LOW)
-			GPIO.output(Motor1B,GPIO.HIGH)
-		elif (left < 0):
-			pwmA.start(0)
-			pwmA.ChangeDutyCycle(left * -1)
-			GPIO.output(Motor1A,GPIO.HIGH)
-			GPIO.output(Motor1B,GPIO.LOW)
+		def setMotor(l, r):
+			if (l == 0):		
+				pwmA.stop()
+			elif (l > 0):
+				pwmA.start(0)
+				pwmA.ChangeDutyCycle(l)
+				GPIO.output(Motor1A,GPIO.LOW)
+				GPIO.output(Motor1B,GPIO.HIGH)
+			elif (l < 0):
+				pwmA.start(0)
+				pwmA.ChangeDutyCycle(l * -1)
+				GPIO.output(Motor1A,GPIO.HIGH)
+				GPIO.output(Motor1B,GPIO.LOW)
 
-		if (right == 0):
-			pwmB.stop()
-		elif (right > 0):
-			pwmB.start(0)
-			pwmB.ChangeDutyCycle(right)
-			GPIO.output(Motor2A,GPIO.LOW)
-			GPIO.output(Motor2B,GPIO.HIGH)
-		elif (right < 0):
-			pwmB.start(0)
-			pwmB.ChangeDutyCycle(right * -1)
-			GPIO.output(Motor2A,GPIO.HIGH)
-			GPIO.output(Motor2B,GPIO.LOW)
+			if (r == 0):
+				pwmB.stop()
+			elif (r > 0):
+				pwmB.start(0)
+				pwmB.ChangeDutyCycle(r)
+				GPIO.output(Motor2A,GPIO.LOW)
+				GPIO.output(Motor2B,GPIO.HIGH)
+			elif (r < 0):
+				pwmB.start(0)
+				pwmB.ChangeDutyCycle(r * -1)
+				GPIO.output(Motor2A,GPIO.HIGH)
+				GPIO.output(Motor2B,GPIO.LOW)
 
 		if (ps3.a_square > 0):
 			active = False
@@ -153,6 +154,7 @@ try:
 				if records:
 					array = records['waarden']
 					for coord in array:
+						setMotor(coord['l'][0:7], coord['r'][0:7])
 						print('links : ' + coord['l'][0:7] + '   rechts : ' + coord['r'][0:7] )
 				else:
 					print('geen records in afspeellijst')
