@@ -42,8 +42,6 @@ records_active = db.reference('actief').get()
 records = db.reference('data').get()
 write = db.reference('data')
 
-# PS3 Controller setup
-ps3 = PS3.Controller()
 
 #GPIO mode selecteren
 GPIO.setmode(GPIO.BCM)
@@ -87,6 +85,18 @@ rec = {
 		'naam': naam,
 		'waarden': []
 }
+
+for x in range(0, 4):
+	GPIO.output(lamp1, GPIO.HIGH)
+	GPIO.output(buzzerE, GPIO.HIGH)
+	time.sleep(0.1)
+	GPIO.output(lamp1, GPIO.LOW)
+	GPIO.output(buzzerE, GPIO.LOW)
+	time.sleep(0.1)
+	
+time.sleep(10)
+# PS3 Controller setup
+ps3 = PS3.Controller()
 
 #Print Controls to user
 print("")

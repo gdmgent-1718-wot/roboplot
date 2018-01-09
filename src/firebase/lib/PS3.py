@@ -54,7 +54,6 @@ class Controller:
 		pygame.init()
 		pygame.joystick.init()
 		Controller.joystick = pygame.joystick.Joystick(0)
-		print(str(Controller.joystick))
 		Controller.joystick.init()
 		Controller.joystick_count = pygame.joystick.get_count()
 		Controller.numaxes = Controller.joystick.get_numaxes()
