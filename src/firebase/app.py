@@ -3,6 +3,7 @@
 # Imports
 #import depencies
 import math, time
+import datetime
 import RPi.GPIO as GPIO
 from lib import PS3 
 import json
@@ -10,40 +11,40 @@ import io
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-import datetime
-import atexit
-import time
 import json
 import names
 
-counter = 0
-toggle = False
 #Huidige tijd
 now = datetime.datetime.now()
+
+#global variablen
+counter = 0
+toggle = False
+data = []
+active = True
+
 #waarden voor weg te schrijven
 datum = now.strftime("%d-%m-%Y %H:%M")
 naam = names.get_first_name(gender='female')
 actief = False
+
 #load Firebase credentials
 cred = credentials.Certificate('../../driver/lib/key.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL' : 'https://roboplot-1.firebaseio.com/'
 })
+
+#referenties ophalen voor get
 records_active = db.reference('actief').get()
+
 #referenties instellen zowel voor get als voor write
 records = db.reference('data').get()
 write = db.reference('data')
 
-
-#array for logging
-data = []
-
-active = True
-#create data
-x = 1
 # PS3 Controller setup
 ps3 = PS3.Controller()
 
+#GPIO mode selecteren
 GPIO.setmode(GPIO.BCM)
 #motor1
 Motor1A = 23 # Set GPIO-23 as Input 1 of the controller IC
@@ -71,7 +72,6 @@ GPIO.setup(lamp1, GPIO.OUT)
 pwmA=GPIO.PWM(25,100) #confuguring Enable pin means GPIO-25 for PWM
 pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 
-
 buttonCrossDelay = 0
 buttonTriangleDelay = 0
 
@@ -85,12 +85,18 @@ rec = {
 
 #Print Controls to user
 print("")
-print("Joysticks:")
+print("Controls:")
 print("LEFT JOY UP/DOWN:    LEFT MOTOR FORWARD/BACKWARD")
 print("RIGHT JOY UP/DOWN:   RIGHT MOTOR FORWARD/BACKWARD")
-print("SELECT: TOGGLE LIGHT ON/OFF")
 print("")
-print("To Close, press 'Ctrl + C'")
+print("R1:    START RECORDING PATH")
+print("R2:    STOP RECORDING PATH")
+print("")
+print("TRIANGLE:    EXECUTE ACTIVE PATH FROM APP")
+print("CROSS:    TOGGLE LIGHT ON/OFF")
+print("")
+print("")
+print("To Close, press 'Ctrl + C' of push SQUARE")
 
 def setMotor(l, r):
 	leftMotor = float(l)
@@ -188,7 +194,6 @@ try:
 						fbRight = float(coord['r'][0:7])
 						setMotor(fbLeft, fbRight)
 						time.sleep(0.0186)
-						print('links : ' + coord['l'][0:7] + '   rechts : ' + coord['r'][0:7] )
 				else:
 					print('geen records in afspeellijst')
 
@@ -203,7 +208,8 @@ try:
 		#start met recorden
 		if (ps3.r1):
 			toggle = True
-			print('Start opname')
+      GPIO.output(lamp1, True)
+			#print('Start opname')
 		#Stop met recorden
 		if (ps3.r2):
 			if toggle==True:
@@ -214,7 +220,8 @@ try:
 					data = []
 					rec['naam'] = names.get_first_name(gender='female')
 			toggle = False
-			print('Stop opname')
+      GPIO.output(lamp1, False)
+			#print('Stop opname')
 		counter += 1
 
 except KeyboardInterrupt:
