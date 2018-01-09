@@ -42,13 +42,6 @@ rec = {
 }
 
 def exit():
-    try:
-        if data:
-            #write
-            rec['waarden'] = data
-            newrecord = write.push(rec)
-    except Exception:
-        print('Het record met de naam %s bestaat al.'%naam)
     print('afgesloten')
 # Start update cycle
 while record:
@@ -105,6 +98,13 @@ while record:
         print('Start opname')
     #Stop met recorden
     if (ps3.r2):
+        try:
+            if data:
+                #write
+                rec['waarden'] = data
+                newrecord = write.push(rec)
+        except Exception:
+            print('Het record met de naam %s bestaat al.'%naam)
         toggle = False
         print('Stop opname')
     counter += 1
