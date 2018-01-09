@@ -10,13 +10,32 @@ import io
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+import atexit
+import time
+import json
+import names
+
+counter = 0
+toggle = False
+#Huidige tijd
+now = datetime.datetime.now()
+#waarden voor weg te schrijven
+datum = now.strftime("%d-%m-%Y %H:%M")
+naam = names.get_first_name(gender='female')
 
 #load Firebase credentials
 cred = credentials.Certificate('../../driver/lib/key.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL' : 'https://roboplot-1.firebaseio.com/'
 })
-records = db.reference('actief').get()
+records_active = db.reference('actief').get()
+#referenties instellen zowel voor get als voor write
+records = db.reference('data').get()
+write = db.reference('data')
+
+
+#array for logging
+data = []
 
 active = True
 #create data
@@ -54,6 +73,14 @@ pwmB=GPIO.PWM(17,100) #confuguring Enable pin means GPIO-17 for PWM
 
 buttonCrossDelay = 0
 buttonTriangleDelay = 0
+
+#assign
+rec = {
+    'datum': datum,
+    'actief': actief,
+    'naam': naam,
+    'waarden': []
+}
 
 #Print Controls to user
 print("")
@@ -152,9 +179,9 @@ try:
 		buttonTriangleDelay += 1
 		if (buttonTriangleDelay > 1500):
 			if (ps3.a_triangle > 0):
-				records = db.reference('actief').get()
-				if records:
-					array = records['waarden']
+				records_active = db.reference('actief').get()
+				if records_active:
+					array = records_active['waarden']
 					for coord in array:
 						fbLeft = float(coord['l'][0:7])
 						fbRight = float(coord['r'][0:7])
@@ -165,6 +192,29 @@ try:
 					print('geen records in afspeellijst')
 
 				buttonTriangleDelay = 0
+
+    #logs to array
+    if toggle==True:
+        if counter%50 == 0:
+            item = {"l": str(left),"r": str(right)}
+            data.append(item)
+
+		#start met recorden
+		if (ps3.r1):
+				toggle = True
+				print('Start opname')
+		#Stop met recorden
+		if (ps3.r2):
+				if toggle==True:
+						if data:
+								#write
+										rec['waarden'] = data
+										newrecord = write.push(rec)
+										data = []
+										rec['naam'] = names.get_first_name(gender='female')
+				toggle = False
+				print('Stop opname')
+		counter += 1
 
 except KeyboardInterrupt:
   GPIO.cleanup()
