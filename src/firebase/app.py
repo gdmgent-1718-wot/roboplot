@@ -154,7 +154,9 @@ try:
 				if records:
 					array = records['waarden']
 					for coord in array:
-						setMotor(coord['l'][0:7], coord['r'][0:7])
+						fbLeft = float(coord['l'][0:7])
+						fbRight = float(coord['r'][0:7])
+						setMotor(fbLeft, fbRight)
 						print('links : ' + coord['l'][0:7] + '   rechts : ' + coord['r'][0:7] )
 				else:
 					print('geen records in afspeellijst')
