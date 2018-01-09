@@ -193,11 +193,11 @@ try:
 
 				buttonTriangleDelay = 0
 
-    #logs to array
-    if toggle==True:
-        if counter%50 == 0:
-            item = {"l": str(left),"r": str(right)}
-            data.append(item)
+		#logs to array
+		if toggle==True:
+			if counter%50 == 0:
+				item = {"l": str(left),"r": str(right)}
+				data.append(item)
 
 		#start met recorden
 		if (ps3.r1):
