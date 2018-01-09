@@ -53,6 +53,9 @@ class Controller:
 		
 		pygame.init()
 		pygame.joystick.init()
+		while not pygame.joystick.Joystick(0):
+			print ("no controller")
+			time.sleep(1)
 		Controller.joystick = pygame.joystick.Joystick(0)
 		Controller.joystick.init()
 		Controller.joystick_count = pygame.joystick.get_count()
