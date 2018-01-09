@@ -64,6 +64,33 @@ print("SELECT: TOGGLE LIGHT ON/OFF")
 print("")
 print("To Close, press 'Ctrl + C'")
 
+def setMotor(l, r):
+	if (l == 0):		
+		pwmA.stop()
+	elif (l > 0):
+		pwmA.start(0)
+		pwmA.ChangeDutyCycle(l)
+		GPIO.output(Motor1A,GPIO.LOW)
+		GPIO.output(Motor1B,GPIO.HIGH)
+	elif (l < 0):
+		pwmA.start(0)
+		pwmA.ChangeDutyCycle(l * -1)
+		GPIO.output(Motor1A,GPIO.HIGH)
+		GPIO.output(Motor1B,GPIO.LOW)
+
+	if (r == 0):
+		pwmB.stop()
+	elif (r > 0):
+		pwmB.start(0)
+		pwmB.ChangeDutyCycle(r)
+		GPIO.output(Motor2A,GPIO.LOW)
+		GPIO.output(Motor2B,GPIO.HIGH)
+	elif (r < 0):
+		pwmB.start(0)
+		pwmB.ChangeDutyCycle(r * -1)
+		GPIO.output(Motor2A,GPIO.HIGH)
+		GPIO.output(Motor2B,GPIO.LOW)
+
 try:
 	# Start update cycle
 	while active:
@@ -108,33 +135,6 @@ try:
 		setMotor(left, right)
 		# Debugging
 		#print "[L: " + str(left) + ", R: " + str(right) + "]"
-
-		def setMotor(l, r):
-			if (l == 0):		
-				pwmA.stop()
-			elif (l > 0):
-				pwmA.start(0)
-				pwmA.ChangeDutyCycle(l)
-				GPIO.output(Motor1A,GPIO.LOW)
-				GPIO.output(Motor1B,GPIO.HIGH)
-			elif (l < 0):
-				pwmA.start(0)
-				pwmA.ChangeDutyCycle(l * -1)
-				GPIO.output(Motor1A,GPIO.HIGH)
-				GPIO.output(Motor1B,GPIO.LOW)
-
-			if (r == 0):
-				pwmB.stop()
-			elif (r > 0):
-				pwmB.start(0)
-				pwmB.ChangeDutyCycle(r)
-				GPIO.output(Motor2A,GPIO.LOW)
-				GPIO.output(Motor2B,GPIO.HIGH)
-			elif (r < 0):
-				pwmB.start(0)
-				pwmB.ChangeDutyCycle(r * -1)
-				GPIO.output(Motor2A,GPIO.HIGH)
-				GPIO.output(Motor2B,GPIO.LOW)
 
 		if (ps3.a_square > 0):
 			active = False
