@@ -93,7 +93,7 @@ for x in range(0, 4):
 	GPIO.output(lamp1, GPIO.LOW)
 	GPIO.output(buzzerE, GPIO.LOW)
 	time.sleep(0.1)
-	
+
 time.sleep(10)
 # PS3 Controller setup
 ps3 = PS3.Controller()
@@ -193,13 +193,6 @@ try:
 		setMotor(left, right)
 		# Debugging
 		#print "[L: " + str(left) + ", R: " + str(right) + "]"
-
-		if (ps3.a_square > 0):
-			active = False
-			GPIO.output(lamp1, GPIO.HIGH)
-			GPIO.output(buzzerE, GPIO.HIGH)
-			time.sleep(2)
-			GPIO.cleanup()
 
 		buttonTriangleDelay += 1
 		if (buttonTriangleDelay > 1500):
