@@ -208,7 +208,7 @@ try:
 		#start met recorden
 		if (ps3.r1):
 			toggle = True
-      GPIO.output(lamp1, GPIO.HIGH)
+			GPIO.output(lamp1, GPIO.HIGH)
 			#print('Start opname')
 		#Stop met recorden
 		if (ps3.r2):
@@ -220,7 +220,7 @@ try:
 					data = []
 					rec['naam'] = names.get_first_name(gender='female')
 			toggle = False
-      GPIO.output(lamp1, GPIO.LOW)
+			GPIO.output(lamp1, GPIO.LOW)
 			#print('Stop opname')
 		counter += 1
 
