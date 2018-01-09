@@ -232,12 +232,12 @@ try:
 			if toggle==True:
 				if data:
 					#write
+					GPIO.output(lamp1, GPIO.LOW)
 					rec['waarden'] = data
 					newrecord = write.push(rec)
 					data = []
 					rec['naam'] = names.get_first_name(gender='female')
 			toggle = False
-			GPIO.output(lamp1, GPIO.LOW)
 			#print('Stop opname')
 		counter += 1
 
