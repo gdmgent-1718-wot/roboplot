@@ -21,7 +21,6 @@ now = datetime.datetime.now()
 datum = now.strftime("%d-%m-%Y %H:%M")
 naam = names.get_first_name(gender='female')
 actief = False
-write = False
 #credentials voor firebase
 cred = credentials.Certificate('../../driver/lib/key.json')
 firebase_admin.initialize_app(cred, {
@@ -98,17 +97,16 @@ while record:
         toggle = True
         print('Start opname')
     #Stop met recorden
-    if (ps3.r2):        
-        toggle = False
-        write = True
-        print('Stop opname')
-    if write==True:
-        try:
+    if (ps3.r2):
+        if toggle==True:
             if data:
                 #write
-                rec['waarden'] = data
-                newrecord = write.push(rec)
-    write == False
+                    rec['waarden'] = data
+                    newrecord = write.push(rec)
+                    data = []
+                    rec['naam'] = names.get_first_name(gender='female')
+        toggle = False
+        print('Stop opname')
     counter += 1
 atexit.register(exit)
 
