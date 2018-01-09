@@ -204,24 +204,13 @@ try:
 						setMotor(fbLeft, fbRight)
 						time.sleep(0.0186)
 				else:
-					print('geen records in afspeellijst')
-					GPIO.output(lamp1, GPIO.HIGH)
-					GPIO.output(buzzerE, GPIO.HIGH)
-					time.sleep(0.1)
-					GPIO.output(lamp1, GPIO.LOW)
-					GPIO.output(buzzerE, GPIO.LOW)
-					time.sleep(0.1)
-					GPIO.output(lamp1, GPIO.HIGH)
-					GPIO.output(buzzerE, GPIO.HIGH)
-					time.sleep(0.1)
-					GPIO.output(lamp1, GPIO.LOW)
-					GPIO.output(buzzerE, GPIO.LOW)
-					time.sleep(0.1)
-					GPIO.output(lamp1, GPIO.HIGH)
-					GPIO.output(buzzerE, GPIO.HIGH)
-					time.sleep(0.1)
-					GPIO.output(lamp1, GPIO.LOW)
-					GPIO.output(buzzerE, GPIO.LOW)
+					for x in range(0, 3):
+						GPIO.output(lamp1, GPIO.HIGH)
+						GPIO.output(buzzerE, GPIO.HIGH)
+						time.sleep(0.1)
+						GPIO.output(lamp1, GPIO.LOW)
+						GPIO.output(buzzerE, GPIO.LOW)
+						time.sleep(0.1)
 
 				buttonTriangleDelay = 0
 
