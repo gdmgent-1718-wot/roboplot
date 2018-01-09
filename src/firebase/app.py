@@ -197,15 +197,15 @@ try:
 				else:
 					print('geen records in afspeellijst')
 					GPIO.output(lamp1, GPIO.HIGH)
-					time.sleep(0.01)
+					time.sleep(0.1)
 					GPIO.output(lamp1, GPIO.LOW)
-					time.sleep(0.01)
+					time.sleep(0.1)
 					GPIO.output(lamp1, GPIO.HIGH)
-					time.sleep(0.01)
+					time.sleep(0.1)
 					GPIO.output(lamp1, GPIO.LOW)
-					time.sleep(0.01)
+					time.sleep(0.1)
 					GPIO.output(lamp1, GPIO.HIGH)
-					time.sleep(0.01)
+					time.sleep(0.1)
 					GPIO.output(lamp1, GPIO.LOW)
 
 				buttonTriangleDelay = 0
