@@ -108,8 +108,6 @@ while record:
                 #write
                 rec['waarden'] = data
                 newrecord = write.push(rec)
-            except Exception:
-                print('Het record met de naam %s bestaat al.'%naam)
     write = False
     counter += 1
 atexit.register(exit)
