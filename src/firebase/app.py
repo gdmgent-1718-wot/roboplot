@@ -77,10 +77,10 @@ buttonTriangleDelay = 0
 
 #assign
 rec = {
-    'datum': datum,
-    'actief': actief,
-    'naam': naam,
-    'waarden': []
+		'datum': datum,
+		'actief': actief,
+		'naam': naam,
+		'waarden': []
 }
 
 #Print Controls to user
@@ -218,4 +218,4 @@ try:
 		counter += 1
 
 except KeyboardInterrupt:
-  GPIO.cleanup()
+	GPIO.cleanup()
