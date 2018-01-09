@@ -108,7 +108,7 @@ while record:
                 #write
                 rec['waarden'] = data
                 newrecord = write.push(rec)
-    write = False
+    write == False
     counter += 1
 atexit.register(exit)
 
