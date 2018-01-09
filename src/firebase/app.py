@@ -72,8 +72,8 @@ GPIO.setup(lamp1, GPIO.OUT)
 #buzzer
 buzzerP = 2
 buzzerE = 3
-GPIO.setmode(buzzerP, GPIO.OUT)
-GPIO.setmode(buzzerE, GPIO.OUT)
+GPIO.setup(buzzerP, GPIO.OUT)
+GPIO.setup(buzzerE, GPIO.OUT)
 GPIO.output(buzzerP, GPIO.HIGH)
 
 
