@@ -52,11 +52,9 @@ class Controller:
 		sys.stdout = os.fdopen(sys.stdout.fileno(), 'w')
 		
 		pygame.init()
-		while not pygame.joystick.init:
-			print ("no controller")
-			time.sleep(1)
 		pygame.joystick.init()
 		Controller.joystick = pygame.joystick.Joystick(0)
+		print(str(Controller.joystick))
 		Controller.joystick.init()
 		Controller.joystick_count = pygame.joystick.get_count()
 		Controller.numaxes = Controller.joystick.get_numaxes()
