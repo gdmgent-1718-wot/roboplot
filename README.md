@@ -23,7 +23,15 @@ ROBOPLOT
 ## Hardware
 
 - Raspberry Pi 3
+- L293D Quadruple Half-H Drivers
+- 9v Battery
+- 9v DC motors
+- BC547 Transistor
+- Small powerbank
 - Active 5v buzzer
+- Jumpcables
+- Leds
+- Resistors
 
 ## Technische Tekening
 
@@ -92,9 +100,3 @@ $ jstest /dev/input/js0
 ```
 
 This script delivers all value's of the buttons. You will see changes when you press a button
-
-
-
-
-
-
