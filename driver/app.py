@@ -105,7 +105,7 @@ try:
 		item = {"l": str(left),"r": str(right)}
 		data.append(item)
 
-		if (left == 0):		
+		if (left == 0):
 			pwmA.stop()
 		elif (left > 0):
 			pwmA.start(0)

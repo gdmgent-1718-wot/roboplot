@@ -150,11 +150,11 @@ try:
 		if (buttonTriangleDelay > 1500):
 			if (ps3.a_triangle > 0):
 				if records:
-    			array = records['waarden']
-    			for coord in array:
-        	print('links : ' + coord['l'][0:7] + '   rechts : ' + coord['r'][0:7] )
+					array = records['waarden']
+					for coord in array:
+					print('links : ' + coord['l'][0:7] + '   rechts : ' + coord['r'][0:7] )
 				else:
-    			print('geen records in afspeellijst')
+					print('geen records in afspeellijst')
 
 				buttonTriangleDelay = 0
 
