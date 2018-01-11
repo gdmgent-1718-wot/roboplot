@@ -238,7 +238,6 @@ try:
 			toggle = False
 			#print('Stop opname')
 		counter += 1
-		time.sleep(0.005)
 
 except KeyboardInterrupt:
 	GPIO.output(lamp1, GPIO.HIGH)
