@@ -8,12 +8,10 @@ import RPi.GPIO as GPIO
 from lib import PS3 
 import json
 import io
+import names
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-import json
-import names
-
 #Huidige tijd
 now = datetime.datetime.now()
 
@@ -86,15 +84,15 @@ rec = {
 		'waarden': []
 }
 
-for x in range(0, 4):
-	GPIO.output(lamp1, GPIO.HIGH)
-	GPIO.output(buzzerE, GPIO.HIGH)
-	time.sleep(0.1)
-	GPIO.output(lamp1, GPIO.LOW)
-	GPIO.output(buzzerE, GPIO.LOW)
-	time.sleep(0.1)
+#for x in range(0, 4):
+#	GPIO.output(lamp1, GPIO.HIGH)
+#	GPIO.output(buzzerE, GPIO.HIGH)
+#	time.sleep(0.1)
+#	GPIO.output(lamp1, GPIO.LOW)
+#	GPIO.output(buzzerE, GPIO.LOW)
+#	time.sleep(0.1)
 
-time.sleep(10)
+#time.sleep(10)
 # PS3 Controller setup
 ps3 = PS3.Controller()
 
@@ -204,7 +202,7 @@ try:
 						fbLeft = float(coord['l'][0:7])
 						fbRight = float(coord['r'][0:7])
 						setMotor(fbLeft, fbRight)
-						time.sleep(0.020)
+						time.sleep(0.0178)
 				else:
 					for x in range(0, 3):
 						GPIO.output(lamp1, GPIO.HIGH)
