@@ -202,7 +202,7 @@ try:
 						fbLeft = float(coord['l'][0:7])
 						fbRight = float(coord['r'][0:7])
 						setMotor(fbLeft, fbRight)
-						#time.sleep(0.00178)
+						time.sleep(0.000356)
 				else:
 					for x in range(0, 3):
 						GPIO.output(lamp1, GPIO.HIGH)
