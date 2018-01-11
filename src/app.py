@@ -202,7 +202,7 @@ try:
 						fbLeft = float(coord['l'][0:7])
 						fbRight = float(coord['r'][0:7])
 						setMotor(fbLeft, fbRight)
-						time.sleep(0.000356)
+						time.sleep(0.019)
 				else:
 					for x in range(0, 3):
 						GPIO.output(lamp1, GPIO.HIGH)
@@ -216,9 +216,9 @@ try:
 
 		#logs to array
 		if toggle==True:
-			#if counter%50 == 0:
-			item = {"l": str(left),"r": str(right)}
-			data.append(item)
+			if counter%50 == 0:
+				item = {"l": str(left),"r": str(right)}
+				data.append(item)
 
 		#start met recorden
 		if (ps3.r1):
