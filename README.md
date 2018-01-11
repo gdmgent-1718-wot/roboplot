@@ -20,6 +20,10 @@ ROBOPLOT
 - Keuzeoptie: **New Media Development**
 - Opleidingsinstelling: **Arteveldehogeschool**
 
+## Promovideo
+
+[![IMAGE ALT TEXT HERE](https://github.com/gdmgent-1718-wot/roboplot/blob/master/docs/video_roboplot.jpg)](https://www.youtube.com/watch?v=e1qKE4O-l1A)
+
 ## Hardware
 
 - Raspberry Pi 3
