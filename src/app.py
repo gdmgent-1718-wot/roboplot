@@ -216,7 +216,7 @@ try:
 
 		#logs to array
 		if toggle==True:
-			if counter%50 == 0:
+			if counter%5 == 0:
 				item = {"l": str(left),"r": str(right)}
 				data.append(item)
 
