@@ -109,7 +109,7 @@ print("TRIANGLE:    EXECUTE ACTIVE PATH FROM APP")
 print("CROSS:    TOGGLE LIGHT ON/OFF")
 print("")
 print("")
-print("To Close, press 'Ctrl + C' of push SQUARE")
+print("To Close, press 'Ctrl + C'")
 
 GPIO.output(lamp1, GPIO.HIGH)
 GPIO.output(buzzerE, GPIO.HIGH)
@@ -216,7 +216,7 @@ try:
 
 		#logs to array
 		if toggle==True:
-			#if counter%5 == 0:
+			#if counter%50 == 0:
 			item = {"l": str(left),"r": str(right)}
 			data.append(item)
 
@@ -238,6 +238,7 @@ try:
 			toggle = False
 			#print('Stop opname')
 		counter += 1
+		time.sleep(0.005)
 
 except KeyboardInterrupt:
 	GPIO.output(lamp1, GPIO.HIGH)
