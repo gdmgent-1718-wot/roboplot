@@ -1,0 +1,96 @@
+$rood: #F44336;
+$lichtblauw: #17a2b8;
+$wit: white;
+$grijs: #484848;
+$blauw: #1E88E5;
+$paars: #2c3e50;
+@import 'login/login';
+.roboplot{
+    display: block;
+    width: auto;
+    height: 30vh;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.main{
+    .left{
+        text-align: left;
+    }
+    .right{
+        float: right;
+    }
+    .actionbuttons{
+        margin: 0px 10px 0px;
+    }
+    .textleft{
+        text-align: left;
+    }
+    .act{
+        background-color: $lichtblauw!important;
+        color: $wit!important;
+        a{
+            color: $wit;
+        }
+    }
+    .verwijderen{
+        background-color: $rood;
+    }
+    .annuleer{
+        background-color: $blauw;
+    }    
+    .white{
+        color: $wit;
+    }
+    .badge{
+        background-color: $grijs!important
+    }
+}
+.title{
+text-align: center;
+}
+body {
+  margin: 0;
+}
+.rood{
+    color: $rood!important
+}
+.center{
+    text-align: center
+}
+.links{
+    cursor: pointer;
+}
+.is-danger{
+    border: 1px solid $rood!important
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $paars;
+}
+
+main {
+  text-align: center;
+  margin-top: 40px;
+}
+
+header {
+  margin: 0;
+  height: 56px;
+  padding: 0 16px 0 24px;
+  background-color: #35495E;
+  color: $wit;
+}
+
+header span {
+  display: block;
+  position: relative;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: .02em;
+  font-weight: 400;
+  box-sizing: border-box;
+  padding-top: 16px;
+}
